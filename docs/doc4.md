@@ -1,123 +1,71 @@
 ---
 id: Demo App
-title: Demo App - Dad Jokes
+title: Demo App-Food Recipes
 ---
 
-It's time to create a demo app!
+It's time to create our demo app!
 In this app, we will create a Dad Jokes app, we will fetch data from an Api and we will use both `useState` and `useEffect` hooks.
 
-First, create a new file under `src > components` and name it `JokeDemo.js`. 
+First, create a new file under `src > components` and name it `FoodRecipe.js`.
+Copy the code below and paste it into your code editor. To be able to get a response, first you need an APP ID, and APP_KEY.
+
+## How Can I Fetch Data?
+
+1. Go to [edamam.com](https://www.edamam.com/)
+2. Choose `Recipe Search API`
+3. Click on `Sign Up`
+4. Choose `Developer` and Click on `Start Now`
+5. Fill out the form.
+6. Go to `Dashboard`
+7. Click on `Applications` > `View`. You should see your Application ID and Application Keys in this page.
+8. Copy your keys and paste it inside the code.
+9. API can give some errors, if you see any **CORS errors**, add a cors browser extension for the browser you are using. [Firefox](https://addons.mozilla.org/en-US/firefox/addon/cors-everywhere/) / [Chrome](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf/related)
+10. Still, there is a problem? You need to wait until your API keys are available.
+11. `url` is from the API documentation, you can check it out [here.](https://developer.edamam.com/edamam-docs-recipe-api)
 
 ```js
-import React from 'react';
+// src > components > FoodRecipe.js
 
+import React, {useState} from 'react';
 
-const JokeDemo = () => {
-  return <button onClick={onTellJoke}>Tell me a joke</button>;
-};
-```
+const FoodRecipe = () => {
+  // paste your APP_ID
+  const APP_ID = '';
+  // paste your APP_KEY
+  const APP_KEY = '';
 
-```javascript
-import React, {useEffect, useState} from 'react';
+  const url = `https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}`;
 
-const JokeDemo = () => {
-  const [isLoadingJoke, setIsLoadingJoke] = useState(false);
-  // store joke search results
-  const [jokes, setJokes] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  useEffect(() => {
-    setIsLoadingJoke(true);
-    searchJokes();
-  }, []);
-
-  //https://icanhazdadjoke.com/
-  const searchJokes = () => {
-    fetch(`https://icanhazdadjoke.com/search?term=${searchTerm}`, {
-      //options object
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        const jokes = json.results;
-        console.log('joke', jokes);
-        setJokes(jokes);
-        // setJoke(json.joke);
-        setIsLoadingJoke(false);
-      }); //json returns promise
-  };
-  const onSearchSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    // console.log("form submit");
-    setSearchTerm();
+    const response = await fetch(url);
+    const result = await response.json();
+    console.log(result);
   };
 
   return (
-    <div className="App">
-      <form onSubmit={onSearchSubmit}>
-        <input
-          type="text"
-          placeholder="Enter search term... "
-          onChange={(e) => setSearchTerm(e.target.value)}
-          value={searchTerm}
-        />
-        <button>Search</button>
-        {/* disable button when joke is loading */}
-        <button onClick={searchJokes} disabled={isLoadingJoke}>
-          Tell me a joke
+    <div>
+      <h1>Food Recipe App </h1>
+      <form onSubmit={onSubmit}>
+        <input type="text" value={input} />
+        <button type="submit" className="btn">
+          Search
         </button>
-        <p>{isLoadingJoke ? 'Loading joke...' : jokes.toString()}</p>
-        {/* <p>isLoadingJoke: {isLoadingJoke.toString()}</p> */}
-        <p>search term: {searchTerm}</p>
       </form>
     </div>
   );
 };
 
-export default JokeDemo;
+export default FoodRecipe;
 ```
 
-REACT only updates what is necessary
-react batches updates together - if you trigger multiple state changes from a react event handler or lifecycle method, it will batch all those changes into a single render.32w
-react elements are plain objects
+![demo](../static/img/food-demo-1.gif)
 
-## Add search form
+Then what we did?
 
-1- call search joke endpoint, and store the results
-2- save search input's value in app's state
-3- trigger search on form submission
-4- render the search results
-5- hook up the I'm feeling Funny button
-6- create search form component
-7- refactoring and clean
-8- add styling to the app
+- created some JSX and added form, input and button properties.
+- for the form submit, we need `onSubmit` event handler, and created the function for it. Used async/await and fetch browser API, to get our data from `edamam`. So, when we submit the form, we will fetch our recipes.
 
-Functions are not valid as a React child. This may happen if you return a Component instead of <Component /> from render. Or maybe you meant to call this function rather than return it.
+As you notice, we didn't use `useEffect` here yet; but we could fetch our data. Now, we will try this with `useEffect` hook.
 
-render the state with toString()
-we need to map through the array and iterate
-
-`jokes.toString()`
-
-## React Forms
-
-forms are unique case as native HTML form elements already managed their own internal state
-
-where should form state be managed in React app?
-in inputs internal state, react state
-
-store the search input value as a new state searchTerm
-
-onChange event fires every time the input's value changes.
-Synthetic event is a wrapper around the browser's native event
-
-see how the search term is updated when the user types:
-
-`<p>search term: {searchTerm}</p>`
-
-## submit search
-
-search trigger when the form submits
+To be able to change our query from `chicken` search to any search, we need to add a state with `useState` hook.
