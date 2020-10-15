@@ -38,11 +38,27 @@ The hands-on practical and real-life scenario of basic React Application using R
 ## What Are React Hooks?
 
 Hooks are a new addition in React 16.8. With the help of hooks, we can use state and other React features without writing a class.
-React Hooks makes developing apps easier and with less complexity. Hooks bring state and lifecycle to React Functional Components.
+Hooks bring state and lifecycle methods to React Functional Components.
+React Hooks makes developing apps easier with less complexity. It improves readability and organization of components.
+We can create custom hooks to reuse code across our app.
+
+## Basic React hooks
+
+<p align="center"><img width="50%" src="../static/img/diagram.svg" /></p>
+
+- The `useState` is the most common hook that you will see. It is the `State hook` for declaring the state in our components
+- The `useRef` used to allow access directly to an element in the DOM and to create a mutable value that won't trigger a rerender.
+- The `useEffect` is used for _side effects_ like fetching data from an API.
+- The `useContext` for context api
+- The `useReducer` redux instead of useState
+- The `useMemo` to memoize stuff, to not to create a function on each render
+- The `useCallback` to wrap that function inside `useCallback` hook, that will not create the function on each render
+- The `useLayoutEffect` similar to useEffect , they differ in when they trigger.
 
 ### Why Hooks?
 
-- Before Hooks:
+Before Hooks:
+
 - we would need to understand how **this** keyword works in Javascript, and to remember to bind event handlers in `class components`.
 - Common way to attach logic externally to a component was to use the render props or Higher Order Components pattern.
 - Composition instead of inheritance
@@ -137,14 +153,3 @@ serviceWorker.unregister();
 Also, we can remove `logo` files from the `public` folder, now my files are looking like this:
 
 ![img](../static/img/fs.png)
-
-## Basic React hooks
-
-- The `useState` is the most common hook that you will see. It is the `State hook` for declaring the state in our components
-- The `useRef` used to allow access directly to an element in the DOM and to create a mutable value that won't trigger a rerender.
-- The `useEffect` is used for _side effects_ like fetching data from an API.
-- The `useContext` for context api
-- The `useReducer` redux instead of useState
-- The `useMemo` to memoize stuff, to not to create a function on each render
-- The `useCallback` to wrap that function inside `useCallback` hook, that will not create the function on each render
-- The `useLayoutEffect` similar to useEffect , they differ in when they trigger.
