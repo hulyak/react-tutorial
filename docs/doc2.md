@@ -107,6 +107,9 @@ body {
 
 `useState` function returns an array of two items:
 
+- the first element is the _current value of the state_.
+- the second is a _state setter/updater function_. We use to update our state.
+
 ```javascript
 // destructuring an array
 const [title, setTitle] = useState('hello world');
@@ -119,9 +122,6 @@ const items = useState('hello world');
 const title = items[0];
 const setTitle = items[1];
 ```
-
-- the first element is the _current value of the state_.
-- the second is a _state setter function_. We use to update our state.
 
 You may ask, _How React knows when to render?_ React components will only re-render when its props or state have changed. Props are passed into a component and read-only, whereas a state holds information about the component, and can be updated.
 
@@ -339,3 +339,8 @@ Let’s break down the code above to explain what we’ve added and how it works
 - adding button with an `onClick` handler that invokes the `setItems` function of useState with an empty array. So, we can remove everything from our array.
 
 ![demo](../static/img/demo2.gif)
+
+Create a new component name it `Recipe.js`, pass recipe as a prop.
+Map over the recipes from `FoodRecipe.js`
+
+Pass props from `recipes` state to `Recipe.js` component

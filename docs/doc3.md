@@ -41,11 +41,11 @@ useEffect(() => {
 }, []);
 ```
 
-Let's check! It only runs once when the component is mounted or loaded.
+This only runs once when the component is mounted or loaded.
 
 It looks exactly like the behavior of `componentDidMount` in React classes. But we shouldn't compare with React class components.
 
-3. Lastly, we can pass a value or values inside an array dependency.
+1. Lastly, we can pass a value or values inside an array dependency.
 
 ```javascript
 // runs after every rerender if data has changed since last render
@@ -57,13 +57,51 @@ useEffect(() => {
 We can put our variables from our component like any variables that we want for; for example, state variables, local variables or props.
 They adjust the array of dependencies.
 
-If the variable is inside this array, we will trigger this effect only when the value of this variable will change, and not on each rerender.
+If the variable is inside this array, we will trigger this effect only when the value of this variable will change, and not on each rerender. Any state or props we list in this array will cause `useEffect` to re-run when they change.
+
+## `useEffect` Cleanup
+
+- `useEffect` comes with a cleanup function that helps to unmount the component, we can think of it is like `componentDidUnmount`. When we need to clear a subscription, or clear setTimeout, we can use cleanup functions. When we run the code, code first will cleanup the old state, then will run the updated state. This can help us to remove unnecessary behavior or prevent memory leaking issues.
+
+```javascript
+useEffect(() => {
+  effect;
+  return () => {
+    cleanup;
+  };
+}, [input]);
+```
+
+```javascript
+const Cleanup = () => {
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    let isMounted = true;
+    fetchAPI.then(() => {
+      if (ismMounted) {
+        setLoading(false);
+      }
+    });
+    // cleanup
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+};
+```
 
 #### Sidenotes:
 
 - We can use multiple useEffects in our application.
 - We cannot mark useEffect as `async function`.
-- `useEffect` comes with a cleanup function that helps to unmount the component, we can think of it is like `componentDidUnmount`.
+
 - whatever we put inside return, it will exit.
 - before we set up another listener, first we cleanup then render the component
   conditional rendering to hide and show
+
+We can make API calls with React in four different ways:
+
+1. Call fetch/Axios in your component
+2. Make another file and store your API calls.
+3. Create a reusable custom hook.
+4. Use a library like react-query, swr, etc.
