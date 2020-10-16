@@ -5,15 +5,15 @@ title: useEffect Hook
 
 ![img](../static/img/useeffect-hook.jpg)
 
-If you’ve written React class components before, you should be familiar with lifecycle methods like `componentDidMount, componentDidUpdate, and componentWillUnmount`. The `useEffect` Hook is all three of these lifecycle methods combined. It's used for side effects (all things which happen outside of react) like API calls, managing subscriptions, dom manipulation, setting local storage, etc.
+If you’ve written React class components before, you should be familiar with lifecycle methods like `componentDidMount, componentDidUpdate, and componentWillUnmount`. The `useEffect` Hook is all three of these lifecycle methods combined. It's used for side effects (all things which happen outside of React) like network requests, managing subscriptions, DOM manipulation, setting up event listeners, timeouts,intervals, and local storage, etc.
 
-`useEffect` functions runs after every re-render by default.
+`useEffect` functions runs after every rerender by default.
 It doesn't matter what caused the render like changing the state, or maybe new props inside effect will be triggered after rendering.
 
 Setting title of the page will also be a side effect.
-`useEffect` takes an anonymous function, we can tell `useEffect` when the code we want to be executed, second argument controls when the code gets executed.
+`useEffect` takes a callback function, we can tell `useEffect` when the code we want to be executed, second argument controls when the code gets executed.
 
-For the second argument, we can use use `useEffect` in three different ways.
+For the second argument, we can use `useEffect` in three different ways:
 
 1. Without any dependency, just an anonymous function.
 
@@ -22,15 +22,13 @@ It renders every time our app renders and at initial render.
 ```javascript
 // runs after every rerender
 useEffect(() => {
-  console.log('render');
+  console.log('I run after every render and at initial render');
 });
 ```
 
-But we don' want to render each time, this can cause memory leak and infinite loop and we should avoid this.
+But we don't want to render each time, this can cause infinite loop and we should avoid this.
 
 We need to optimize our components. We can pass `a list of dependencies`. Dependency will trigger effect on the change of the dependencies.
-
-**What will happen if we provide no dependencies but an empty array?**
 
 2. With an empty array
 
@@ -45,12 +43,12 @@ This only runs once when the component is mounted or loaded.
 
 It looks exactly like the behavior of `componentDidMount` in React classes. But we shouldn't compare with React class components.
 
-1. Lastly, we can pass a value or values inside an array dependency.
+3. Lastly, we can pass a value or values inside an array dependency.
 
 ```javascript
 // runs after every rerender if data has changed since last render
 useEffect(() => {
-  console.log('I only run once');
+  console.log('I run whenever some piece of data has changed)');
 }, [id, value]);
 ```
 
@@ -61,7 +59,7 @@ If the variable is inside this array, we will trigger this effect only when the 
 
 ## `useEffect` Cleanup
 
-- `useEffect` comes with a cleanup function that helps to unmount the component, we can think of it is like `componentDidUnmount`. When we need to clear a subscription, or clear setTimeout, we can use cleanup functions. When we run the code, code first will cleanup the old state, then will run the updated state. This can help us to remove unnecessary behavior or prevent memory leaking issues.
+- `useEffect` comes with a cleanup function that helps unmount the component, we can think of it is like `componentDidUnmount` lifecycle event. When we need to clear a subscription, or clear setTimeout, we can use cleanup functions. When we run the code, code first will cleanup the old state, then will run the updated state. This can help us to remove unnecessary behavior or prevent memory leaking issues. -
 
 ```javascript
 useEffect(() => {
@@ -75,6 +73,7 @@ useEffect(() => {
 ```javascript
 const Cleanup = () => {
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     let isMounted = true;
     fetchAPI.then(() => {
@@ -82,7 +81,8 @@ const Cleanup = () => {
         setLoading(false);
       }
     });
-    // cleanup
+
+    // cleanup function
     return () => {
       isMounted = false;
     };
@@ -90,16 +90,28 @@ const Cleanup = () => {
 };
 ```
 
-#### Sidenotes:
+```javascript
+const Cleanup = () => {
+  const [count, setCount] = useState(0);
 
-- We can use multiple useEffects in our application.
-- We cannot mark useEffect as `async function`.
+  useEffect(() => {
+    const intervalID = setInterval(() => {
+      setCount((prev) => prev + 1);
+    }, 1000);
 
-- whatever we put inside return, it will exit.
-- before we set up another listener, first we cleanup then render the component
-  conditional rendering to hide and show
+    // clear interval
+    return () => {
+      clearInterval(intervalID);
+    };
+  }, []);
+};
+```
 
-We can make API calls with React in four different ways:
+### Side Notes:
+
+- We can use multiple `useEffect`s in our application.
+- We cannot mark `useEffect` as `async function`.
+- We can make API calls with React in four different ways:
 
 1. Call fetch/Axios in your component
 2. Make another file and store your API calls.

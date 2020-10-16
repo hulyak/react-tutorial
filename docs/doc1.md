@@ -18,7 +18,7 @@ You can check out the application that we will create in this tutorial.
 - Basic familiarity with HTML & CSS.
 - Basic knowledge of JavaScript and programming.
 - Basic understanding of the DOM.
-- Familiarity with ES6 syntax and features.
+- Familiarity with ECMAScript 2015 (arrow functions, destructuring, classes)
 - Basic React knowledge like props, components, one way-data-flow
 
 Here's the source and a live demo of the end result.
@@ -48,14 +48,16 @@ We can create custom hooks to reuse code across our app.
 
 <p align="center"><img width="50%" src="../static/img/diagram.svg" /></p>
 
-- The `useState` is the most common hook that you will see. It is the `State hook` for declaring the state in our components
-- The `useRef` used to allow access directly to an element in the DOM and to create a mutable value that won't trigger a rerender.
-- The `useEffect` is used for _side effects_ like fetching data from an API.
-- The `useContext` for context api
-- The `useReducer` redux instead of useState
-- The `useMemo` to memoize stuff, to not to create a function on each render
-- The `useCallback` to wrap that function inside `useCallback` hook, that will not create the function on each render
-- The `useLayoutEffect` similar to useEffect , they differ in when they trigger.
+- `useState` is the most common hook that you will see. It is the `state hook` for declaring the state in our components.
+- `useRef` is used to allow access directly to an element in the DOM and to create a mutable ref object that won't trigger a rerender.
+- `useEffect` is used for _side effects_ like fetching data from an API.
+- `useContext` allows us to easily work with the React Context API (solving the prop drilling issue)
+- `useReducer` is an advanced version of `useState` for managing complex state logic. It’s quite similar to Redux.
+- `useMemo` returns a value from a memoized function.
+- `useCallback` returns a function that returns a cacheable value. Useful for performance optimization if you want to prevent unnecessary re-renders when the input hasn’t changed.
+- `useLayoutEffect` similar to `useEffect` , they differ in when they trigger.
+- `useImperativeHandle` to customize the instance value that’s exposed to parent components when using ref.
+- `useDebugValue` displays a label for custom Hooks in React Developer Tools.
 
 ### Why Hooks?
 
@@ -78,10 +80,11 @@ We can organize the logic inside a component into `reusable isolated units.` And
 
 There are some **rules** about how to use hooks. The following rules are:
 
-- only call hooks at the top level of the component
-- don't call hooks inside loops, conditionals, or nested functions
-- only call hooks from React functions
-- call them from within React functional components and not just any regular Javascript function
+- Only call hooks at the top level of the component.
+- Don't call hooks inside loops, conditionals, or nested functions/
+- Only call hooks from React functional components.
+- Call them from within React functional components and not just any regular Javascript function
+- Hooks can call other Hooks
 
 You may ask, _Should I need to change my class components to hooks?_ Actually no, We can still use class components as 16.8 is backward compatible.
 
@@ -116,6 +119,8 @@ cd myApp
 #start the app
 npm start
 ```
+
+Your default browser will open and you’ll see your new React app.
 
 ![app](../static/img/app.png)
 
