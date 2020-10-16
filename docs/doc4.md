@@ -46,17 +46,10 @@ const FoodRecipe = () => {
     console.log(result);
   };
 
-  // when you send the form, we call onSubmit handler to query the results
-  const onSubmit = (e) => {
-    // prevent browser refresh
-    e.preventDefault();
-    getData();
-  };
-
   return (
     <div>
       <h1>Food Recipe App </h1>
-      <form onSubmit={onSubmit}>
+      <form>
         <input type="text" placeholder="Search for recipes" />
         <button type="submit" className="btn">
           Search
@@ -69,26 +62,15 @@ const FoodRecipe = () => {
 export default FoodRecipe;
 ```
 
-![demo](../static/img/food-demo-1.gif)
+![demo](../static/img/food-demo.gif)
 
 Let's see what we did in our code:
 
-- created some JSX and added form, input and button properties.
-- for the form submit, we need `onSubmit` event handler, and created the function for it. Used async/await and fetch browser API, to get our data from `edamam`.
-- So, when we submit the form, we will fetch our recipes with the help of `useEffect` hook.
-- As you can see, we ara calling our function to fetch our data.
+- Created some JSX and added form, input and button properties.
+- As you can see, we are calling our function to fetch our data.
 
 ```javascript
-const onSubmit = (event) => {
-  event.preventDefault();
-  getData();
-};
-```
-
-To be able to change our query from `chicken` search to any search, we need to add a state with `useState` hook.
-Also, for the user search, we need to add a `state.`
-
-```javascript
+// src > components > FoodRecipe.js
 import React, {useState, useEffect} from 'react';
 import Recipe from './Recipe';
 
@@ -113,37 +95,13 @@ const FoodRecipe = () => {
     setRecipes(result.hits);
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    getData();
-  };
-
   return (
     <div>
       <h1>Food Recipe App </h1>
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          autoComplete="off"
-          placeholder="Search Food"
-        />
+      <form>
+        <input type="text" placeholder="Search Food" />
         <button type="submit" className="btn" value="Search" />
       </form>
-      {/* create JSX for our data from API */}
-      <div className="recipes">
-        {recipes !== [] &&
-          recipes.map((recipe) => (
-            <Recipe
-              key={recipe.recipe.url}
-              label={recipe.recipe.label}
-              calories={recipe.recipe.calories}
-              image={recipe.recipe.image}
-              url={recipe.recipe.url}
-            />
-          ))}
-      </div>
     </div>
   );
 };
@@ -160,19 +118,60 @@ Go to `src > components`, create a new component and name it `Recipe.js`. Copy t
 
 import React from 'react';
 
-// inside recipe object destructure label,etc
+const Recipe = () => {
+  return (
+    <div className="recipes">
+      <h2>Label</h2>
+      <div></div>
+
+      <p>calories</p>
+      <img />
+      <a href="" target="_blank">
+        URL
+      </a>
+      <button>Ingredients</button>
+    </div>
+  );
+};
+
+export default Recipe;
+```
+
+```javascript
+// src > components > FoodRecipe.js
+
+return (
+  <div>
+    {/* ... */}
+    <div className="recipes">
+      {/* map over our array and pass our data from API*/}
+      {recipes !== [] &&
+        recipes.map((recipe) => (
+          <Recipe
+            key={recipe.recipe.url}
+            label={recipe.recipe.label}
+            calories={recipe.recipe.calories}
+            image={recipe.recipe.image}
+            url={recipe.recipe.url}
+          />
+        ))}
+    </div>
+  </div>
+);
+```
+
+Now, we can go to our `Recipe` component and pass our props to it. We will use destructuring.
+
+```javascript
+// src > components > Recipe.js
+
+import React from 'react';
+
+// inside recipe object destructure label, etc
 const Recipe = ({label, calories, image, url, ingredients}) => {
   return (
     <div className="recipes">
       <h2>{label}</h2>
-      <div>
-        <ul>
-          {ingredients.map((ingredient) => (
-            <li key={ingredient.text}>{ingredient.text}</li>
-          ))}
-        </ul>
-      </div>
-
       <p>{calories}</p>
       <img src={image} alt={label} />
       <a href={url} target="_blank">
@@ -186,29 +185,84 @@ const Recipe = ({label, calories, image, url, ingredients}) => {
 export default Recipe;
 ```
 
-```js
+demo for chicken search with api results
+
+Now, we need to use our search bar and we will search the recipe from our input field.To be able to change our query from `chicken` search to any search, we need to add a state with `useState` hook.
+
+To get the state of our search bar, we will create a new piece of state.
+
+```javascript
 // src > components > FoodRecipe.js
 
-import React, {useState} from 'react';
+// create a state for search query
+const [search, setSearch] = useState('');
+```
+
+And set the value for input value `search` and `setSearch` will update our input with the `onChange` event handler. `
+
+`input` is keeping track of its state with `search` state. We can get input's value from `event.target.value`.
+Then we can change our state with `setSearch` function.
+
+```javascript
+// src > components > FoodRecipe.js
+
+<input
+  type="text"
+  value={search}
+  onChange={(event) => setSearch(event.target.value)}
+/>
+```
+
+We need to update our state, after we click on `Search Button`. That's why we need another state. And we can update our `url` from chicken query to any query. Make a new state, name it `query`.
+
+```javascript
+// src > components > FoodRecipe.js
+
+const [query, setQuery] = useState('');
+
+// when you send the form, we call onSubmit handler to query the results
+const onSubmit = (e) => {
+  // prevent browser refresh
+  e.preventDefault();
+  // setQuery for the finished search recipe
+  setQuery(search);
+};
+```
+
+Now, we need to pass our `query` state to our `onEffect` dependency array. Whenever we click on the Search button, we will call our Api and change our state to new `query` state.
+
+`query` will run only after form submit. Use it as a dependency inside the array. Our final code now looking like this:
+
+```javascript
+// src > component > FoodRecipe.js
+
+import React, {useState, useEffect} from 'react';
+import Recipe from './Recipe';
 
 const FoodRecipe = () => {
-  // create a state for search query
+  const [recipes, setRecipes] = useState([]);
   const [search, setSearch] = useState('');
-  // display the results with results state
-  const [results, setResults] = useState([]);
+  const [query, setQuery] = useState('');
 
   const APP_ID = '';
   const APP_KEY = '';
 
-  // change chicken to search piece of state to make it dynamic
-  const url = `https://api.edamam.com/search?q=${search}&app_id=${APP_ID}&app_key=${APP_KEY}`;
+  const url = `https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`;
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    getData();
+  }, [query]);
+
+  const getData = async () => {
     const response = await fetch(url);
     const result = await response.json();
-    setResults(result.data.hits);
-    // clear the input when we submit the form
+    setRecipes(result.hits);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setQuery(search);
+    // empty the input field after making search
     setSearch('');
   };
 
@@ -218,13 +272,27 @@ const FoodRecipe = () => {
       <form onSubmit={onSubmit}>
         <input
           type="text"
+          placeholder="Search for recipes"
           value={search}
-          onChange={(event) => setSearch(event.target.value)}
+          onChange={(e) => setSearch(e.target.value)}
         />
         <button type="submit" className="btn">
           Search
         </button>
       </form>
+      <div className="recipe">
+        {recipes !== [] &&
+          recipes.map((recipe) => (
+            <Recipe
+              key={recipe.recipe.url}
+              label={recipe.recipe.label}
+              calories={recipe.recipe.calories}
+              image={recipe.recipe.image}
+              url={recipe.recipe.url}
+              ingredients={recipe.recipe.ingredients}
+            />
+          ))}
+      </div>
     </div>
   );
 };
@@ -232,22 +300,16 @@ const FoodRecipe = () => {
 export default FoodRecipe;
 ```
 
-`Input` is keeping track of its state with `search` state. We can get input's value from `event.target.value`.
-Then we can change our state with `setSearch` function.
-
-```javascript
-<input
-  type="text"
-  value={search}
-  onChange={(event) => setSearch(event.target.value)}
-/>
-```
-
-// effect itself cannot be async
-// inline the async function inside useEffect
-
-Only make search after we click the `Search button`. Make a new state, name it `query`.
-
-`query` will run only after form submit. Use it as a dependency inside the array.
-
 If you run into any issues with your app or you have questions, please reach out to me on Twitter @hulyakarakayaa\_ or on Github.
+
+### References:
+
+Here are the references I used for this tutorial:
+
+- [React Js Documentation](https://reactjs.org/docs/hooks-reference.html)
+- [Overreacted/A Complete Guide to useEffect](https://overreacted.io/a-complete-guide-to-useeffect/)
+- [Digital Ocean's How To Build a React-To-Do App with React Hooks](https://www.digitalocean.com/community/tutorials/how-to-build-a-react-to-do-app-with-react-hooks)
+- [Tutorial Example](https://caabernathy.github.io/rust-tutorial/docs/)
+- [Tania Rascia's React Tutorial](https://www.taniarascia.com/getting-started-with-react/)
+- [Software on the Road/React Hooks: everything you need to know!](https://softwareontheroad.com/react-hooks/#use-effect)
+- [Upmostly tutorials/Simplifying React State and the useState Hook](https://upmostly.com/tutorials/simplifying-react-state-and-the-usestate-hook)

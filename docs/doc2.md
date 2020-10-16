@@ -70,34 +70,105 @@ Also, go into your `App.css` file and add this css code.
 /* src > App.css */
 
 body {
-  padding: 50px;
-  background-color: #dddddd;
+  padding: 10px;
   font-family: sans-serif;
+  background-color: #f69e9e;
+  line-height: 1.2;
 }
 
 .container {
   text-align: center;
   margin-top: 5rem;
+  width: 90vw;
+  margin: 0 auto;
+  max-width: 1170px;
+  min-height: 100vh;
 }
-.btn {
+
+h1 {
+  color: #371e30;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+a {
+  text-decoration: none;
+  color: #222;
+  font-weight: 600;
+}
+
+ol {
+  list-style-type: none;
+}
+
+.recipe__list {
+  margin: 0 20px;
+  padding: 0;
+  text-align: left;
+}
+
+input[type='text'] {
+  width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
   display: inline-block;
-  color: black;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.btn {
+  display: block;
+  margin: 0 auto;
   padding: 0.25rem 0.75rem;
   border-color: transparent;
   text-transform: capitalize;
-  font-size: 1rem;
+  font-size: 1.4rem;
   margin-top: 2rem;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
   cursor: pointer;
+  background-color: #ddd;
+  color: black;
+}
+
+.btn:hover {
+  border: 1px solid #df57bc;
+  background-color: #df57bc;
+  color: #fff;
 }
 
 .item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   max-width: 500px;
   margin: 2rem auto;
+  align-items: center;
+}
+
+.formContainer {
+  min-height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recipes {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.recipe {
+  border-radius: 10px;
+  box-shadow: 0px 5px 20px rgb(71, 71, 71);
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #fff;
+  align-items: center;
+  min-width: 40%;
+  flex-wrap: wrap;
 }
 ```
 
@@ -123,12 +194,12 @@ const title = items[0];
 const setTitle = items[1];
 ```
 
-You may ask, _How React knows when to render?_ React components will only re-render when its props or state have changed. Props are passed into a component and read-only, whereas a state holds information about the component, and can be updated.
+You may ask, _How React knows when to render?_ React components will only rerender when its props or state have changed. Props are passed into a component and read-only, whereas a state holds information about the component, and can be updated.
 
 During the initial render, the returned state is the same as the value passed as the first argument (initialState).
-The `setState` function is used to update the state. It accepts a new state value and enqueues a re-render of the component.
+The `setState` function is used to update the state. It accepts a new state value and rerenders the component.
 
-State tracks the value of our state. Whenever the state updates, it should also rerender JSX elements. The setter function is gonna be used to update our state value.
+State tracks the value of our state. The setter function updates the state, and rerenders JSX elements.
 
 In class components, the state is always an object, with the `useState` hook, the state does not have to be an object. Instead, you can break up state into multiple pieces that you can update independently.
 
@@ -335,12 +406,8 @@ Let’s break down the code above to explain what we’ve added and how it works
 - initializing the `useState` hook with an array of objects.
 - mapping over the array to get each array item
 - returning JSX elements to display our array items
-- adding a button for every item for individual removal
-- adding button with an `onClick` handler that invokes the `setItems` function of useState with an empty array. So, we can remove everything from our array.
+- adding a remove button for every item
+- adding a button with an `onClick` handler that invokes the `setItems` function of `useState` with an empty array. So, we can remove everything from our array.
+- adding a add button, when it is clicked on it adds a new item. We merge the old state with the updated state with the help of ES6 spread operator.
 
 ![demo](../static/img/demo2.gif)
-
-Create a new component name it `Recipe.js`, pass recipe as a prop.
-Map over the recipes from `FoodRecipe.js`
-
-Pass props from `recipes` state to `Recipe.js` component

@@ -11,6 +11,8 @@ React is a Javascript library for building user interfaces.
 Throughout this tutorial, you’ll learn how to set state using the `useState` and `useEffect` Hooks. To explore these different ways of setting state, you’ll create a dad joke's component that you’ll fetch new jokes from an API. By the end of this tutorial, you’ll be comfortable managing state in a functional component using Hooks, and you’ll have a foundation for more advanced Hooks such as useEffect, useMemo, and useContext.
 You can check out the application that we will create in this tutorial.
 
+![app](../static/img/app.gif)
+
 #### Prerequisites
 
 - Basic familiarity with HTML & CSS.
