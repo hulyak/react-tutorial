@@ -60,7 +60,7 @@ We can create custom hooks to reuse code across our app.
 - `useDebugValue` displays a label for custom Hooks in React Developer Tools.
 
 ### Why Hooks?
-
+ 
 Before Hooks:
 
 - we would need to understand how **this** keyword works in Javascript, and to remember to bind event handlers in `class components`.

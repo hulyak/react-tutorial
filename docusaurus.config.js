@@ -1,5 +1,5 @@
 module.exports = {
-  title: 'Build a Dads Joke app with React Hooks',
+  title: 'Getting Started with React Hooks: useState and useEffect ',
   tagline: 'written by Hulya Karakaya',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
