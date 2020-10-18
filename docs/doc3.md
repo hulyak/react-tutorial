@@ -15,7 +15,7 @@ Setting title of the page will also be a side effect.
 
 For the second argument, we can use `useEffect` in three different ways:
 
-1. Without any dependency, just an anonymous function.
+## useEffect without Dependency Array
 
 It renders every time our app renders and at initial render.
 
@@ -30,34 +30,7 @@ But we don't want to render each time, this can cause _infinite loop_ and we sho
 
 We need to optimize our components. We can pass _a list of dependencies_. Dependency will trigger effect on the change of the dependencies.
 
-2. With an empty array
-
-```javascript
-// runs at initial render
-useEffect(() => {
-  console.log('I only run once');
-}, []);
-```
-
-This only runs once when the component is mounted or loaded.
-
-It looks exactly like the behavior of `componentDidMount` in React classes. But we shouldn't compare with React class components.
-
-3. Lastly, we can pass a value or values inside an array dependency.
-
-```javascript
-// runs after every rerender if data has changed since last render
-useEffect(() => {
-  console.log('I run whenever some piece of data has changed)');
-}, [id, value]);
-```
-
-We can put our variables from our component like any variables that we want for; for example, state variables, local variables or props.
-They adjust the array of dependencies.
-
-If the variable is inside this array, we will trigger this effect only when the value of this variable will change, and not on each rerender. Any state or props we list in this array will cause `useEffect` to re-run when they change.
-
-## Example Component
+Let's see it in a simple example.
 
 ```javascript
 import React, { useState, useEffect } from 'react';
@@ -92,8 +65,152 @@ In our example, we have two states: `count` and `isOn`. We are rendering these w
 
 For the purpose of this example, we are setting `useEffect` hook and changing our document title to our `isOn`'s default value.(false).
 
-With our `console.log`, we can see that whenever we click the button, we rerender our component. Because we don't have any array dependency.Now, we will try using our dependency array. 
+With our `console.log`, we can see that we rerender our component with our initial render and whenever we click the button. Because we don't have any array dependency. Now, we will try using our dependency array. 
 
+![effect](../static/img/effect.gif)
+
+
+## useEffect with Empty Dependency Array
+
+```javascript
+// runs at initial render
+useEffect(() => {
+  console.log('I only run once');
+}, []);
+```
+
+This only runs once when the component is mounted or loaded.
+
+It looks exactly like the behavior of `componentDidMount` in React classes. But we shouldn't compare with React class components.
+
+### useEffect with Nonempty Dependency Array 
+
+```javascript
+// runs after every rerender if data has changed since last render
+useEffect(() => {
+  console.log('I run whenever some piece of data has changed)');
+}, [id, value]);
+```
+
+We can put our variables from our component like any variables that we want for; for example, state variables, local variables or props.
+They adjust the array of dependencies.
+
+If the variable is inside this array, we will trigger this effect only when the value of this variable will change, and not on each rerender. Any state or props we list in this array will cause `useEffect` to re-run when they change.
+
+```javascript
+import React, { useState, useEffect } from 'react';
+
+function UseEffectDependency() {
+	const [ count, setCount ] = useState(0);
+	const [ isOn, setIsOn ] = useState(false);
+
+	useEffect(() => {
+    document.title = isOn;
+    // only difference from our previous example
+		setCount(count + 1);
+	});
+
+	const handleClick = () => {
+		setIsOn(!isOn);
+	};
+	return (
+		<div>
+			<h1>{isOn ? 'ON' : 'OFF'}</h1>
+			<h1>I was clicked {count} times</h1>
+			<button onClick={handleClick}>Click me</button>
+		</div>
+	);
+}
+
+export default UseEffectDependency;
+```
+
+We have just changed one line of code from the previous example and changed `useEffect` a little, we will not increase our count with the button click. However, we will  trigger our effect whenever the app loads. Let's see what will happen. 
+
+![infinite loop](../static/img/loop.gif)
+
+
+<p align="center"><img width="100%" src="../static/img/source.gif" /></p>
+
+We are in an infinite loop; but why? React rerenders our component when the state changes. We are updating our state in our `useEffect` function, it's creating an infinite loop.  
+
+I think no one want to stuck in a loop; so, we need to find a way to get out of the loop and only run our function whenever our `isOn` state changes. For that, we will add our dependency array and pass our `isOn` state.
+
+ Array of variables will decide if it should execute the function or not. It looks at the content of the array and compare the previous array, and if any of the value specified in the array changes compared to the previous value of the array, it will execute the effect function. If there is no change, it will not execute. 
+
+
+```javascript
+import React, { useState, useEffect } from 'react';
+
+function UseEffectDependency() {
+	const [ count, setCount ] = useState(0);
+	const [ isOn, setIsOn ] = useState(false);
+
+	useEffect(() => {
+    document.title = isOn;
+    setCount(count + 1);
+    // only add this
+	}, [isOn]);
+
+	const handleClick = () => {
+		setIsOn(!isOn);
+	};
+	return (
+		<div>
+			<h1>{isOn ? 'ON' : 'OFF'}</h1>
+			<h1>I was clicked {count} times</h1>
+			<button onClick={handleClick}>Click me</button>
+		</div>
+	);
+}
+
+export default UseEffectDependency;
+```
+
+![dep](../static/img/dep.gif)
+
+It seems like working, at least we got rid of infinite loop,  when it updates `count` it will rerender the component. But if you noticed we start counting from _1_ instead of _0_. We render first at initial render, that's why we see _1_. This effect behaves as a `componentDidMount` and `componentDidUpdate` together. We can solve our problem by adding a if condition.
+
+```JavaScript
+ if(count === 0 && !isOn) return;
+ ```
+
+This will only render at the first render, after that when we click the button, `setIsOn` will be true. Now. our code looks like this.
+
+```javascript
+import React, { useState, useEffect } from 'react';
+
+function UseEffectDependency() {
+	const [ count, setCount ] = useState(0);
+	const [ isOn, setIsOn ] = useState(false);
+
+	useEffect(() => {
+    document.title = isOn;
+     // add this to the code
+    if(count === 0 && !isOn) return;
+		setCount(count + 1);
+	}, [isOn]);
+
+	const handleClick = () => {
+		setIsOn(!isOn);
+	};
+	return (
+		<div>
+			<h1>{isOn ? 'ON' : 'OFF'}</h1>
+			<h1>I was clicked {count} times</h1>
+			<button onClick={handleClick}>Click me</button>
+		</div>
+	);
+}
+
+export default UseEffectDependency;
+```
+
+![dep2](../static/img/dep2.gif)
+
+Okay, now it stars from 0. If you're checking the console, you may see a warning: 
+
+![warning](../static/img/warning.png)
 
 ## `useEffect` Cleanup
 

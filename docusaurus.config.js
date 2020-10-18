@@ -9,7 +9,7 @@ module.exports = {
   projectName: 'react-tutorial', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'React Hooks Tutorial',
+      title: 'React Hooks Tutorial for Beginners',
       logo: {
         alt: 'Hooks',
         src: 'img/logo.svg',

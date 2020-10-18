@@ -59,7 +59,9 @@ We can create custom hooks to reuse code across our app.
 - `useImperativeHandle` to customize the instance value that’s exposed to parent components when using ref.
 - `useDebugValue` displays a label for custom Hooks in React Developer Tools.
 
-### Why Hooks?
+In this tutorial, we will focus on the most common hooks: `useState` and `useEffect`. But first, let's start with _the why we need hooks in the first place._
+
+## Why Hooks?
  
 Before Hooks:
 
@@ -86,15 +88,15 @@ There are some **rules** about how to use hooks. The following rules are:
 - Call them from within React functional components and not just any regular Javascript function
 - Hooks can call other Hooks
 
-You may ask, _Should I need to change my class components to hooks?_ Actually no, We can still use class components as 16.8 is backward compatible.
+You may ask, _Should I need to change my class components to hooks?_ Actually NO, we can still use class components as 16.8 is backward compatible.
 
-### Application Tools
+## Application Tools
 
 - [x] Install [NodeJS](https://nodejs.org/en/) and make sure it is the LTS(long term support) version. LTS version is a less stable version of NodeJS. We will use NPM (node package manager) and we will use it to install **create-react-app**.
       ![nodejs](../static/img/node.png)
 - [x] Install your preferred code editor or IDE. I will be using Visual Studio Code. You can download it from [this website](https://code.visualstudio.com/). It is free to use.
       ![vscode](../static/img/vscode.png)
-- [x] **create-react-app** is an npm package that we can bootstrap our React application without any configuration.
+- [x] **create-react-app** is a npm package that we can bootstrap our React application without any configuration.
       ![create-react-app-github](../static/img/cra.png)
 
 ## How to Install React Hooks?
@@ -116,7 +118,7 @@ npx create-react-app myApp
 cd myApp
 
 # open the project files with Visual Studio or any code editor
-#start the app
+# start the app
 npm start
 ```
 
@@ -160,3 +162,114 @@ serviceWorker.unregister();
 Also, we can remove `logo` files from the `public` folder, now my files are looking like this:
 
 ![img](../static/img/fs.png)
+
+## Styling the Application
+
+I have used [Semantic UI](https://semantic-ui.com/) and custom CSS for styling. For Semantic UI, I have added a `link` tag inside my `public > index.html` file like this:
+
+```html
+<link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet" />
+```
+
+When I use `className` attributes throughout the app, those are coming from Semactic UI or CSS. You don't need to focus on those.
+
+For the CSS code, you can copy these styles inside `App.css` file.
+
+```css
+body {
+  padding: 10px;
+  font-family: sans-serif;
+  background-color: #f69e9e;
+  line-height: 1.2;
+}
+
+.container {
+  text-align: center;
+  margin-top: 5rem;
+  width: 90vw;
+  margin: 0 auto;
+  max-width: 1170px;
+  min-height: 100vh;
+}
+
+h1 {
+  color: #371e30;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 1.2em;
+  padding: 0;
+  color: #222;
+  font-size: 30px;
+}
+
+a {
+  text-decoration: none;
+  color: #222;
+  font-weight: 600;
+}
+
+ul {
+  vertical-align: bottom;
+  margin: 0 20px;
+  padding: 0 0 25px 0;
+  text-align: left;
+}
+
+p {
+  font-weight: bolder;
+  font-size: 1em;
+  text-align: left;
+}
+
+input[type='text'] {
+  width: 60%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.btn {
+  display: block;
+  margin: 0 auto;
+  padding: 0.25rem 0.75rem;
+  border-color: transparent;
+  text-transform: capitalize;
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  background-color: #ddd;
+  color: black;
+}
+
+.btn:hover,
+a:hover {
+  border: 1px solid #df57bc;
+  background-color: #df57bc;
+  padding: 5px;
+  color: #fff;
+}
+
+
+.recipe {
+  border-radius: 10px;
+  margin: 40px;
+  min-width: 40%;
+  padding: 40px;
+  max-width: 400px;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+```
+
+
+Now, with this we are ready to go. 🥳
+
