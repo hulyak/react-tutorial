@@ -1,6 +1,6 @@
 ---
-id: useEffect Hook
-title: useEffect Hook
+id: The useEffect Hook
+title: The useEffect Hook
 ---
 
 ![img](../static/img/useeffect-hook.jpg)
@@ -15,7 +15,7 @@ Setting title of the page will also be a side effect.
 
 For the second argument, we can use `useEffect` in three different ways:
 
-## useEffect without Dependency Array
+## useEffect without a Dependency Array
 
 It renders every time our app renders and at initial render.
 
@@ -70,7 +70,7 @@ With our `console.log`, we can see that we rerender our component with our initi
 ![effect](../static/img/effect.gif)
 
 
-## useEffect with Empty Dependency Array
+## useEffect with an Empty Dependency Array
 
 ```javascript
 // runs at initial render
@@ -83,7 +83,7 @@ This only runs once when the component is mounted or loaded.
 
 It looks exactly like the behavior of `componentDidMount` in React classes. But we shouldn't compare with React class components.
 
-### useEffect with Nonempty Dependency Array 
+### useEffect with a Non-empty Dependency Array 
 
 ```javascript
 // runs after every rerender if data has changed since last render
@@ -212,9 +212,11 @@ Okay, now it stars from 0. If you're checking the console, you may see a warning
 
 ![warning](../static/img/warning.png)
 
+We will not add `count` inside our dependency array because if the count changes, it will trigger a rerender. This will cause an _infinite loop_. We don't want to do this, that's why we will not edit our `useEffect`. If you want, you can try it out.
+
 ## `useEffect` Cleanup
 
-- `useEffect` comes with a cleanup function that helps unmount the component, we can think of it is like `componentWillUnmount` lifecycle event. When we need to clear a subscription, or clear setTimeout, we can use cleanup functions. When we run the code, code first will cleanup the old state, then will run the updated state. This can help us to remove unnecessary behavior or prevent memory leaking issues.
+`useEffect` comes with a cleanup function that helps unmount the component, we can think of it is like `componentWillUnmount` lifecycle event. When we need to clear a subscription, or clear setTimeout, we can use cleanup functions. When we run the code, code first will cleanup the old state, then will run the updated state. This can help us to remove unnecessary behavior or prevent memory leaking issues.
 
 ```javascript
 useEffect(() => {
@@ -264,6 +266,7 @@ function Cleanup() {
   return (
   <div>
     <h1>{count}</h1>
+    <button onClick={() => clearInterval(intervalId)}></button>
   </div>
   );
 }
@@ -275,6 +278,7 @@ export default Cleanup;
 
 - We can use multiple `useEffect`s in our application.
 - We cannot mark `useEffect` as `async function`.
+- React applies effect in the order they are created.
 - We can make API calls with React in four different ways:
 
 1. Call fetch/Axios in your component

@@ -101,7 +101,7 @@ function Header() {
 export default Header;
 ```
 
-
+Now, go build something amazing, but don't pressure yourself. You can always go back to tutorial and check how it is done, also check the [official React documentation](https://reactjs.org/docs/hooks-reference.html).Start small, try creating components first, then try to make it bigger and bigger. I hope you enjoyed this tutorial. I'm looking forward to your feedbacks. You can reach me out at Twitter with the handle @hulyakarakayaa.
 
 
 ### References:
@@ -115,3 +115,4 @@ Here are the references I used for this tutorial:
 - [Tania Rascia's React Tutorial](https://www.taniarascia.com/getting-started-with-react/)
 - [Software on the Road/React Hooks: everything you need to know!](https://softwareontheroad.com/react-hooks/#use-effect)
 - [Upmostly tutorials/Simplifying React State and the useState Hook](https://upmostly.com/tutorials/simplifying-react-state-and-the-usestate-hook)
+- [React Hooks: How to Get Started & Build Your Own](https://www.sitepoint.com/react-hooks/)

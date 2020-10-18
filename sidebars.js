@@ -1,5 +1,5 @@
 module.exports = {
 	someSidebar: {
-		Welcome: [ 'Getting Started', 'useState Hook', 'useEffect Hook', 'Demo App', 'Wrapping Up' ]
+		Welcome: [ 'Getting Started', 'The useState Hook', 'The useEffect Hook', 'Demo App', 'Wrapping Up' ]
 	}
 };
