@@ -339,5 +339,3 @@ export default FoodRecipe;
 
 Time to enjoy your ice creams! I hope you liked the project.
 
-
-

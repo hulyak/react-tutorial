@@ -56,7 +56,7 @@ const handleClick = () => {
   <div>
     <h1>{isOn ? "ON" : "OFF"}</h1>
     <h1>I was clicked {count} times</h1>
-    <button onClick={handleClick}>Click me</button>
+    <button onClick={handleClick} className="btn">Click me</button>
   </div>
   );
 }
@@ -64,7 +64,7 @@ const handleClick = () => {
 export default UseEffect;
 ```
 
-In our example, we have two states: `count` and `isOn`. We are rendering these with our `button` and `h1` tags. When the button get clicked, we are setting `isOn` state to the opposite of its state every time when we click the button.
+In our example, we have two states: `count` and `isOn`. We are rendering these with our `button` and `h1` tags. When the button get clicked, we are setting `isOn` state to the opposite of its state.
 
 For the purpose of this example, we are setting `useEffect` hook and changing our document title to our `isOn`'s default value(false).
 
@@ -102,34 +102,34 @@ They adjust the array of dependencies.
 
 ```javascript
 
-// src > components > UseEffectDependency.js
+// src > components > UseEffect.js
 
 import React, { useState, useEffect } from 'react';
 
-const UseEffectDependency = () => {
-	const [ count, setCount ] = useState(0);
-	const [ isOn, setIsOn ] = useState(false);
+const UseEffect = () => {
+    const [ count, setCount ] = useState(0);
+    const [ isOn, setIsOn ] = useState(false);
 
-	useEffect(() => {
-    document.title = isOn;
-    // only difference from our previous example
-		setCount(count + 1);
-	});
+    useEffect(() => {
+      document.title = isOn;
+      // only difference from our previous example
+      setCount(count + 1);
+    });
 
-	const handleClick = () => {
-		setIsOn(!isOn);
-  };
-  
-	return (
-		<div>
-			<h1>{isOn ? 'ON' : 'OFF'}</h1>
-			<h1>I was clicked {count} times</h1>
-			<button onClick={handleClick}>Click me</button>
-		</div>
-	);
+    const handleClick = () => {
+      setIsOn(!isOn);
+    };
+    
+    return (
+      <div>
+        <h1>{isOn ? 'ON' : 'OFF'}</h1>
+        <h1>I was clicked {count} times</h1>
+        <button onClick={handleClick} className="btn">Click me</button>
+      </div>
+    );
 }
 
-export default UseEffectDependency;
+export default UseEffect;
 ```
 
 We have just changed one line of code from the previous example and changed `useEffect` a little, we will not increase our count with the button click. However, we will  trigger our effect whenever the `useEffect` triggers. Let's see what will happen. 
@@ -148,34 +148,34 @@ Array of variables will decide if it should execute the function or not. It look
 
 ```javascript
 
-// src > components > UseEffectDependency.js
+// src > components > UseEffect.js
 
 import React, { useState, useEffect } from 'react';
 
-const UseEffectDependency = () =>  {
-	const [ count, setCount ] = useState(0);
-	const [ isOn, setIsOn ] = useState(false);
+const UseEffect = () =>  {
+    const [ count, setCount ] = useState(0);
+    const [ isOn, setIsOn ] = useState(false);
 
-	useEffect(() => {
-    document.title = isOn;
-    setCount(count + 1);
-    // only add this
-	}, [isOn]);
+    useEffect(() => {
+      document.title = isOn;
+      setCount(count + 1);
+      // only add this
+    }, [isOn]);
 
-	const handleClick = () => {
-		setIsOn(!isOn);
-  };
-  
-	return (
-		<div>
-			<h1>{isOn ? 'ON' : 'OFF'}</h1>
-			<h1>I was clicked {count} times</h1>
-			<button onClick={handleClick}>Click me</button>
-		</div>
-	);
-}
+    const handleClick = () => {
+      setIsOn(!isOn);
+    };
+    
+    return (
+      <div>
+        <h1>{isOn ? 'ON' : 'OFF'}</h1>
+        <h1>I was clicked {count} times</h1>
+        <button onClick={handleClick} className="btn">Click me</button>
+      </div>
+    );
+  }
 
-export default UseEffectDependency;
+export default UseEffect;
 ```
 
 ![dep](../static/img/dep.gif)
@@ -191,30 +191,30 @@ This will only render at the first render, after that when we click the button, 
 ```javascript
 import React, { useState, useEffect } from 'react';
 
-function UseEffectDependency() {
-	const [ count, setCount ] = useState(0);
-	const [ isOn, setIsOn ] = useState(false);
+const UseEffect = () =>  {
+    const [ count, setCount ] = useState(0);
+    const [ isOn, setIsOn ] = useState(false);
 
-	useEffect(() => {
-    document.title = isOn;
-     // add this to the code
-    if(count === 0 && !isOn) return;
-		setCount(count + 1);
-	}, [isOn]);
+    useEffect(() => {
+      document.title = isOn;
+      // add this to the code
+      if(count === 0 && !isOn) return;
+      setCount(count + 1);
+    }, [isOn]);
 
-	const handleClick = () => {
-		setIsOn(!isOn);
-	};
-	return (
-		<div>
-			<h1>{isOn ? 'ON' : 'OFF'}</h1>
-			<h1>I was clicked {count} times</h1>
-			<button onClick={handleClick}>Click me</button>
-		</div>
-	);
-}
+    const handleClick = () => {
+      setIsOn(!isOn);
+    };
+    return (
+      <div>
+        <h1>{isOn ? 'ON' : 'OFF'}</h1>
+        <h1>I was clicked {count} times</h1>
+        <button onClick={handleClick} className="btn">Click me</button>
+      </div>
+    );
+  }
 
-export default UseEffectDependency;
+export default UseEffect;
 ```
 
 ![dep2](../static/img/dep2.gif)
@@ -239,29 +239,6 @@ useEffect(() => {
 ```
 
 ```javascript
-const Cleanup = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    let isMounted = true;
-    fetchAPI.then(() => {
-      if (ismMounted) {
-        setLoading(false);
-      }
-    });
-
-    // cleanup function
-    return () => {
-      isMounted = false;
-    };
-  }, []);
-};
-```
-
-This example helps us understand how to use cleanup function. Here we have a `count` state, and we are counting by 1 every 1 second with the use of `useEffect` hook. But if we don't clean up or unmount our interval, it will continue to run in the background. 
- 
-
-```javascript
 
 // src > components > Cleanup.js
 
@@ -280,13 +257,16 @@ const Cleanup = ()  => {
   return (
   <div>
     <h1>{count}</h1>
-    <button onClick={() => clearInterval(intervalId)}></button>
   </div>
   );
 }
 
 export default Cleanup;
 ```
+We have defined a `setInterval` method inside our `useEffect` hook, and our interval will run in the background. We are passing a function inside `setInterval` and it will update our `count` piece of state every second.
+Our `useEffect` hook is only gonna run one time, because we have our empty dependency array.
+
+To clean up our hook, we are creating our `return` function, getting our interval id and passing inside our `clearInterval` method.
 
 ### Side Notes
 
