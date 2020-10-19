@@ -180,7 +180,11 @@ Some Key Points:
 
 ## useState with arrays
 
+![todo](../static/img/todo.png)
+
 Now, we will make another component that we will use an array for the initial state. Let's see what will happen. Create a new file under components directory and name it `StateHookArray.js` and copy this code. Again don't forget to import into `App.js`
+
+
 
 ```javascript
 
@@ -258,3 +262,5 @@ Let’s break down the code above to explain what we’ve added and how it works
 - adding an add button, when it is clicked on it adds a new item. We merge the old state with the updated state with the help of ES6 spread operator.
 
 ![demo](../static/img/demo2.gif)
+
+And yes, we are done with the `useState` hook. 🥳
