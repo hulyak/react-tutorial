@@ -28,9 +28,9 @@ Throughout this tutorial, you’ll learn how to set state using the `useState` a
 
 Here's the source and a live demo of the end result.
 
-View Source on GitHub
+[View Source on GitHub](https://github.com/hulyak/react-tutorial-beginner)
 
-View Demo
+[View Demo](https://hooks-demo.netlify.app/)
 
 #### Prerequisites
 
@@ -54,7 +54,7 @@ I want to start our tutorial with the general overview of our hooks. This will y
 
 ## React Hooks
 
-<p align="center"><img width="50%" src="../static/img/diagram.svg" /></p>
+<p align="center"><img width="50%" src="../static/img/diagram.png" /></p>
 
 - `useState` is the most common hook that you will see. It is the `state hook` for declaring the state in our components.
 - `useEffect` is used for _side effects_ like fetching data from an API.
