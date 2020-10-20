@@ -54,7 +54,8 @@ I want to start our tutorial with the general overview of our hooks. This will y
 
 ## React Hooks
 
-<p align="center"><img width="50%" src="../static/img/diagram.png" /></p>
+
+![img](../static/img/diagram.png)
 
 - `useState` is the most common hook that you will see. It is the `state hook` for declaring the state in our components.
 - `useEffect` is used for _side effects_ like fetching data from an API.
@@ -81,7 +82,8 @@ We needed to share stateful logic in a better way. React is designed to render c
 There wasn't a particular way to reuse stateful component logic and this made the code harder to follow.
 So, React Hooks came to rescue.
 
-<p align="center"><em>Or, maybe a Superman??</em><img width="100%" src="../static/img/superman.gif" /></p>
+
+![img](../static/img/superman.gif)
 
 
 Hooks are just functions that are exported from the official React page. They allow us to manipulate components in a different manner.

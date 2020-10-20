@@ -137,7 +137,8 @@ We have just changed one line of code from the previous example and changed `use
 ![infinite loop](../static/img/loop.gif)
 
 
-<p align="center"><img width="100%" src="../static/img/source.gif" /></p>
+![infinite loop](../static/img/source.gif)
+
 
 We are in an infinite loop; but why? React rerenders our component when the state changes. We are updating our state in our `useEffect` function, and it's creating an infinite loop.  
 
