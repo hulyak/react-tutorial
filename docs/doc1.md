@@ -11,7 +11,7 @@ React is a Javascript library for building user interfaces. You may have worked 
 
 ### What we will cover 
 
-Throughout this tutorial, you’ll learn how to set state using the `useState` and `useEffect` Hooks. You’ll create different components and for the last component we will combine these two hooks and create a recipe app that you’ll fetch new recipes from an API. More specifically, we will learn how to: 
+Throughout this tutorial, you’ll learn how to set state using the `useState` and `useEffect` Hooks. You’ll create different components and for the last component, we will combine these two hooks and create a recipe app that you’ll fetch new recipes from an API. More specifically, we will learn how to: 
 
 - use `useState` with an array for the default value
 - use `useState` with an object for the default value
@@ -26,7 +26,7 @@ Throughout this tutorial, you’ll learn how to set state using the `useState` a
 - The hands-on practical and real-life scenario of basic React Application using React Hooks.
 - You will manage state in a functional component using Hooks, and you’ll have a foundation for more advanced Hooks such as `useCallback`, `useMemo`, and `useContext`.
 
-Here's the source and a live demo of the end result.
+Here are the source and a live demo of the end result.
 
 [View Source on GitHub](https://github.com/hulyak/react-tutorial-beginner)
 
@@ -46,11 +46,11 @@ Here's the source and a live demo of the end result.
 Hooks are a new addition in React 16.8. With the help of hooks, we can use state and other React features without writing a class.
 Hooks allow for attaching reusable logic to an existing component and use state and lifecycle methods inside a React functional component.
 We can organize the logic inside a component into `reusable isolated units`, and we have a `better separation of concerns.`
-React Hooks makes developing apps easier with less complexity. It improves readability and organization of components.
+React Hooks makes developing apps easier with less complexity. It improves the readability and organization of components.
 We can create custom hooks to reuse code across our app.
 
 
-I want to start our tutorial with the general overview of our hooks. This will you a big picture about hooks, then we will dig deeper into our two commonly used hooks. You can just skim over these and use it as a reference when you need. This may be overwhelming; but no need to worry right now. 
+I want to start our tutorial with a general overview of our hooks. This will you a big picture of hooks, then we will dig deeper into our two commonly used hooks. You can just skim over these and use them as a reference when you need them. This may be overwhelming, but no need to worry right now. 
 
 ## React Hooks
 
@@ -68,19 +68,19 @@ I want to start our tutorial with the general overview of our hooks. This will y
 - `useImperativeHandle` to customize the instance value that’s exposed to parent components when using ref.
 - `useDebugValue` displays a label for custom Hooks in React Developer Tools.
 
-In this tutorial, we will focus on the most common hooks: `useState` and `useEffect`. But first, let's start with _the why we need hooks in the first place._
+In this tutorial, we will focus on the most common hooks: `useState` and `useEffect`. But first, let's start with _why we need hooks in the first place._
 
 ## Why Hooks?
  
 Before Hooks:
 
 - We would need to understand how **this** keyword works in Javascript, and to remember to bind event handlers in `class components`.
-- Common way to attach logic externally to a component was to use the `render props` or `Higher Order Components` pattern.
+- A common way to attach logic externally to a component was to use the `render props` or `Higher-Order Components` pattern.
 
 
 We needed to share stateful logic in a better way. React is designed to render components, and it doesn't know anything about routing, fetching data, or architecture of our project.
 There wasn't a particular way to reuse stateful component logic and this made the code harder to follow.
-So, React Hooks came to rescue.
+So, React Hooks came to the rescue.
 
 
 ![img](../static/img/superman.gif)
@@ -108,7 +108,7 @@ You may ask, _Should I need to change my class components to hooks?_ Actually NO
 
 ![vscode](../static/img/vscode.png)
 
-- [x] **create-react-app** is a npm package that we can bootstrap our React application without any configuration.
+- [x] **create-react-app** is an npm package that we can bootstrap our React application without any configuration.
       
 ![create-react-app-github](../static/img/cra.png)
 
@@ -180,7 +180,7 @@ Also, we can remove `logo` files from the `public` folder, now my files are look
 
 ### Important Note: 
 
-Throughout this tutorial, I will create multiple components and you need to import the components to `App.js` to see how it is working. I have used `react-router-dom` to show all the components in one app; but we will not talk about routing in this tutorial. That's why you need to create a folder under `src` directory named `components` and create the components there, then import it to `App.js`. Example:
+Throughout this tutorial, I will create multiple components and you need to import the components to `App.js` to see how it is working. I have used `react-router-dom` to show all the components in one app, but we will not talk about routing in this tutorial. That's why you need to create a folder under `src` directory named `components` and create the components there, then import it to `App.js`. Example:
 
 ```javascript
 // App.js
@@ -312,5 +312,5 @@ a:hover {
 ```
 
 
-Now, with this we are ready to go. 🥳
+Now, with this, we are ready to go. 🥳
 

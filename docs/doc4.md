@@ -4,7 +4,7 @@ title: Demo App-Food Recipes
 ---
 
 It's time to create our demo app!
-In this app, we will create a Food Recipe app, we will fetch data from an Api and we will use both `useState` and `useEffect` hooks.
+In this app, we will create a Food Recipe app, we will fetch data from an API and we will use both `useState` and `useEffect` hooks.
 
 First, create a new file under `src > components` and name it `FoodRecipe.js`.
 To be able to get a response for search queries, we need an APP ID, and an APP KEY.
@@ -16,10 +16,10 @@ To be able to get a response for search queries, we need an APP ID, and an APP K
 3. Choose `Developer` and Click on `Start Now`
 4. Fill out the form.
 5. Go to `Dashboard`
-6. Click on `Applications` > `View`. You should see your Application ID and Application Keys in this page.
-7. Copy your keys and paste it inside the code.
+6. Click on `Applications` > `View`. You should see your Application ID and Application Keys on this page.
+7. Copy your keys and paste them inside the code.
 8. API can give some errors, if you see any **CORS errors**, add a cors browser extension for the browser you are using. [Firefox](https://addons.mozilla.org/en-US/firefox/addon/cors-everywhere/) / [Chrome](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf/related)
-9. Still, there is a problem? You need to wait until your API keys are available. Also, for free version, we can only make 5 requests per minute.
+9. Still, there is a problem? You need to wait until your API keys are available. Also, for the free version, we can only make 5 requests per minute.
 10. You can check out the [documentation.](https://developer.edamam.com/edamam-docs-recipe-api)
 
 ```js
@@ -69,11 +69,11 @@ export default FoodRecipe;
 
 Let's see what we did in our code:
 
-- Created some JSX and added form, input and button properties.
+- Created some JSX and added form, input, and button properties.
 - As you can see, we are calling our function to fetch our data.
 - Created a `fetch` request to get our data, and used `useEffect` hook to call our function. As you can see, we are using our empty dependency array, because we will only make a request when our app loads. 
 
-We got our API response, and we got a lot of information. You can see from the gif. Now, we need to create a state for our recipes, and we will update the recipes with the API data. We will only extract `hits` and its contents from our response. Let's do it!
+We got our API response, and we got a lot of information. You can see from the gif. Now, we need to create a state for our recipes, and we will update the recipes with the API data. We will only extract `hits` and their contents from our response. Let's do it!
 
 ```javascript
 // src > components > FoodRecipe.js
@@ -114,7 +114,7 @@ Okay, here we have added our `recipes` state and updated with `setRecipes`. From
 
 We need to display our recipes, for that let's create a `Recipe` component.
 
-Go to `src > components`, create a new component and name it `Recipe.js`. Copy this code and this code will allow us to display individual recipes.
+Go to `src > components`, create a new component, and name it `Recipe.js`. Copy this code and this code will allow us to display individual recipes.
 
 Here, I have used some Semantic UI components to display our individual recipes.
 
@@ -223,7 +223,7 @@ Tadaa!! We got our chickens!
 
 Now, we need to use our search bar and we will search the recipe from our input field. To get the state of our search bar, we will create a new piece of state.
 
-Go to `FoodRecipe.js` and add new `search` state.
+Go to `FoodRecipe.js` and add a new `search` state.
 
 ```javascript
 // src > components > FoodRecipe.js
@@ -247,7 +247,7 @@ Then we can change our state with `setSearch` function.
 />
 ```
 
-We need to update our state, after we click on `Search Button`. That's why we need another state. And we can update our `url` from chicken query to any query. Make a new state, name it `query`.
+We need to update our state after we click on `Search Button`. That's why we need another state. And we can update our `url` from chicken query to any query. Make a new state, name it `query`.
 
 
 ```javascript
@@ -264,9 +264,9 @@ const onSubmit = (e) => {
 };
 ```
 
-Now, we need to pass our `query` state to our `onEffect` dependency array. Whenever we click on the Search button, we will call our API and change our state to new `query` state.
+Now, we need to pass our `query` state to our `onEffect` dependency array. Whenever we click on the Search button, we will call our API and change our state to a new `query` state.
 
-`query` will run only after form submit. Use it as a dependency inside the array. Our final code now looking like this:
+`query` will run only after the form submit. Use it as a dependency inside the array. Our final code now looks like this:
 
 ```javascript
 // src > component > FoodRecipe.js
