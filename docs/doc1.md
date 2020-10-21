@@ -187,17 +187,17 @@ Throughout this tutorial, I will create multiple components and you need to impo
 
 import React from 'react';
 // import the new component here
-import import StateHook from './components/StateHook';
+import StateHook from './components/StateHook';
 
 import './App.css';
 
 function App() {
-	return (
-    <div>
-    {/* render the component  */}
-      <StateHook />
-	</div>
-	);
+    return (
+      <div>
+      {/* render the component  */}
+        <StateHook />
+    </div>
+    );
 }
 
 export default App;
