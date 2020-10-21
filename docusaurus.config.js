@@ -40,7 +40,7 @@ module.exports = {
 						},
 						{
 							label: 'Sample Project',
-							to: 'https://github.com/hulyak'
+							to: 'https://react-tut-beginner.netlify.app/'
 						}
 					]
 				},
