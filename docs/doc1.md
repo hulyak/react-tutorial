@@ -212,7 +212,7 @@ I have used [Semantic UI](https://semantic-ui.com/) and custom CSS for styling. 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" rel="stylesheet" />
 ```
 
-`className` attribute values are coming from Semactic UI or CSS. You don't need to focus on those.
+`className` attribute values are coming from Semantic UI or CSS. You don't need to focus on those.
 
 For the CSS code, you can copy these styles inside `App.css` file.
 
