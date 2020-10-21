@@ -86,7 +86,7 @@ This only runs once when the component is mounted or loaded.
 
 It looks exactly like the behavior of `componentDidMount` in React classes. But we shouldn't compare with React class components.
 
-### 3. useEffect with a Non-empty Dependency Array 
+## 3. useEffect with a Non-empty Dependency Array 
 
 ```javascript
 // runs after every rerender if data has changed since last render

@@ -30,7 +30,7 @@ Here are the source and a live demo of the end result.
 
 [View Source on GitHub](https://github.com/hulyak/react-tutorial-beginner)
 
-[View Demo](https://hooks-demo.netlify.app/)
+[View Demo](https://react-tut-beginner.netlify.app/)
 
 #### Prerequisites
 
