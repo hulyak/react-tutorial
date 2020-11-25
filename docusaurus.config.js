@@ -22,10 +22,15 @@ module.exports = {
 					position: 'left'
 				},
 				{
+					href: 'https://react-tut-beginner.netlify.app/',
+					label: 'Demo App',
+					position: 'left'
+				},
+				{
 					href: 'https://github.com/hulyak/react-tutorial-beginner',
-					label: 'Sample Project',
-					position: 'right'
-				}
+					label: 'GitHub',
+					position: 'right',
+				},
 			]
 		},
 		footer: {
