@@ -7,7 +7,7 @@ State helps build highly performant web apps. To keep track of our application l
 
 `useState` function lets you use state in a functional component.
 
-In order to use, `useState` in our component, we have to import `useState` first. `useState` is a named export; so, we will export it with curly braces.
+In order to use `useState` in our component, we have to import `useState` first. `useState` is a named export; so, we will export it with curly braces.
 
 `import React, { useState } from 'react';`
 
@@ -46,7 +46,7 @@ export default StateHook;
 `useState` returns an array of two items:
 
 - the first element is the _current value of the state_.
-- the second is a _state setter/updater function_. We use to update our state.
+- the second is a _state setter/updater function_, we use to update our state.
 
 In short, state tracks the value of our state. The setter function updates the state and rerenders JSX elements.
 

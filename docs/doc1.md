@@ -4,9 +4,9 @@ title: Getting Started
 slug: /
 ---
 
-![hooks](../static/img/react.png)
+![hooks](../static/img/To-do.png)
 
-React is a Javascript library for building user interfaces. You may have worked with class components, and didn't understand why developers are using hooks. As a beginner, it's hard to know which one to use, for example, there are legacy codes written in class components, and you need to refactor it to functional components using Hooks, or you just want to learn the new React, and don't want to invest time learning class components. If you are thinking like this, you are in the right place. This tutorial will show you the details about using `useState` and `useEffect` hooks, as you progress, you can go on with different hooks, and libraries. React is a huge topic and you will be shocked that there are so many different things that you can do with React only. So, fasten your seatbelts, and enjoy the ride.
+React is a Javascript library for building user interfaces. You may have worked with class components, and didn't understand why developers are using hooks. As a beginner, it's hard to know which one to use, for example, there are legacy codes written in class components, and you need to refactor it to functional components using Hooks, or you just want to learn the new React, and don't want to invest time learning class components. If you are thinking like this, you are in the right place. This tutorial will show you the details about using `useState` and `useEffect` hooks, as you progress you can go on with different hooks, and libraries. React is a huge library and you will be shocked that there are so many different things that you can do with React only. So, fasten your seatbelts, and enjoy the ride.
 
 
 ### What we will cover 

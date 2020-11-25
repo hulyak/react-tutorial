@@ -3,7 +3,9 @@ id: The useEffect Hook
 title: The useEffect Hook
 ---
 
-![img](../static/img/useeffect-hook.jpg)
+![img](../static/img/car.gif)
+![img](../static/img/car2.gif)
+![img](../static/img/car3.gif)
 
 If you’ve written React class components before, you should be familiar with lifecycle methods like `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount`. The `useEffect` Hook is all three of these lifecycle methods combined. It's used for side effects (all things which happen outside of React) like network requests, managing subscriptions, DOM manipulation, setting up event listeners, timeouts, intervals, or local storage, etc.
 
