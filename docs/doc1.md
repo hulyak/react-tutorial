@@ -11,7 +11,7 @@ React is a Javascript library for building user interfaces. You may have worked 
 
 ### What we will cover 
 
-Throughout this tutorial, you’ll learn how to set state using the `useState` and `useEffect` Hooks. You’ll create different components and for the last component, we will combine these two hooks and create a recipe app that you’ll fetch new recipes from an API. More specifically, we will learn how to: 
+Throughout this tutorial, you’ll learn how to set state using the `useState` and `useEffect` Hooks. We’ll create different components and for the last component, we will combine these two hooks and create a recipe app that we’ll fetch new recipes from an API. More specifically, we will learn how to: 
 
 - use `useState` with an array for the default value
 - use `useState` with an object for the default value

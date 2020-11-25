@@ -9,7 +9,7 @@ module.exports = {
 	projectName: 'react-tutorial', // Usually your repo name.
 	themeConfig: {
 		navbar: {
-			title: 'React Hooks Tutorial for Beginners',
+			title: 'React Hooks Tutorial',
 			logo: {
 				alt: 'Hooks',
 				src: 'img/logo.svg'
@@ -44,8 +44,8 @@ module.exports = {
 							to: 'docs/'
 						},
 						{
-							label: 'Sample Project',
-							to: 'https://react-tut-beginner.netlify.app/'
+							label: 'Demo Github',
+							to: 'https://github.com/hulyak/react-tutorial-beginner'
 						}
 					]
 				},
