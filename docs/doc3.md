@@ -3,10 +3,6 @@ id: The useEffect Hook
 title: The useEffect Hook
 ---
 
-![img](../static/img/car.gif)
-![img](../static/img/car2.gif)
-![img](../static/img/car3.gif)
-
 If you’ve written React class components before, you should be familiar with lifecycle methods like `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount`. The `useEffect` Hook is all three of these lifecycle methods combined. It's used for side effects (all things which happen outside of React) like network requests, managing subscriptions, DOM manipulation, setting up event listeners, timeouts, intervals, or local storage, etc.
 
 `useEffect` functions run after every rerender by default.
@@ -16,10 +12,12 @@ Setting the title of the page will also be a side effect.
 `useEffect` takes a callback function, we can tell `useEffect` when the code we want to be executed with the second argument. This will control the effect.
 
 For the second argument, we can use `useEffect` in three different ways:
-
+ 
 ## 1. useEffect without a Dependency Array
 
-It renders every time our app renders and at initial render.
+To make this clear for you I want to make an analogy, imagine you have a car, and you never need to buy gas or even start the car, it just goes anywhere you want. Now, back to code!
+
+![img](../static/img/car.gif)
 
 ```javascript
 // runs after every rerender
@@ -28,7 +26,7 @@ useEffect(() => {
 });
 ```
 
-But we don't want to render each time, this can cause _an infinite loop_ and we should avoid this.
+This renders every time our app renders and at initial render. But we don't want to render each time, this can cause _an infinite loop_ and we should avoid this.
 
 We need to optimize our components. We can pass _a list of dependencies_. The dependency will trigger an effect on the change of the dependencies.
 
@@ -77,6 +75,10 @@ With our `console.log`, we can see that we rerender our component with our initi
 
 ## 2. useEffect with an Empty Dependency Array
 
+Now, for the second scenario, we have a car but first, we need to start the car, after that no need to update anything, just one time start the car.
+
+![img](../static/img/car2.gif)
+
 ```javascript
 // runs at initial render
 useEffect(() => {
@@ -89,6 +91,10 @@ This only runs once when the component is mounted or loaded.
 It looks exactly like the behavior of `componentDidMount` in React classes. But we shouldn't compare with React class components.
 
 ## 3. useEffect with a Non-empty Dependency Array 
+
+The last analogy is the real-life scenario, we have a car and we need to buy gas, change the oil, etc. We depend on other stuff to start our car. So, we need to update/refill gas to drive the car.
+
+![img](../static/img/car3.gif)
 
 ```javascript
 // runs after every rerender if data has changed since last render

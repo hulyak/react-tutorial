@@ -13,9 +13,7 @@ In order to use `useState` in our component, we have to import `useState` first.
 
 Let's make an example of how to use `useState`.
 
-```javascript
-// src > components > StateHook.js
-
+```javascript title="src/components/StateHook.js"
 import React, {useState} from 'react';
 
 const StateHook = () => {
@@ -75,8 +73,7 @@ In class components, a state is always an object, with the `useState` hook, the 
 What I mean by the title is we will create an object inside our `useState` hook, instead of passing a string. The initial value of `useState` can be of any type, like an array, an object, a boolean, a number, a string, etc.
 
 
-```javascript
-// src > components > StateHookObject.js
+```javascript title="src/components/StateHookObject.js"
 import React, {useState} from 'react';
 
 const StateHookObject = () => {
@@ -125,8 +122,7 @@ We have a problem with updating our states; so, as you can see, we can update bo
 
 Let's add this one line of code to see what is happening.
 
-```javascript
-// src > components > StateHookObject.js
+```javascript title="src/components/StateHookObject.js"
 // ...
   <h2>Last name is: {name.lastName}</h2>
 
@@ -143,9 +139,7 @@ In class components `setState` will merge the state, `useState` hook will not me
 
 Let's see this in our code:
 
-```javascript
-// src > components > StateHookObject
-
+```javascript title="src/components/StateHookObject.js"
 // ...
 return (
   <form>
@@ -181,10 +175,7 @@ Some Key Points:
 
 Now, we will make another component that we will use an array for the initial state. Let's see what will happen.
 
-```javascript
-
-// src > components > StateHookArray.js
-
+```javascript title="src/components/StateHookArray.js"
 import React, { useState } from 'react';
 
 const StateHookArray = () => {

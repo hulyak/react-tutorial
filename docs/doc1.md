@@ -144,9 +144,7 @@ Now we can see our app is up and running. Before starting our app, let's make so
 Let's remove `App.test.js, index.css, logo.svg, setupTests.js` from the `src` folder. You can copy and paste the basic structure for `App.js` and `index.js` from the code snippets below.
 
 
-```javascript
-// App.js
-
+```javascript title="src/App.js"
 import React from 'react';
 import './App.css';
 
@@ -158,9 +156,7 @@ export default App;
 ```
 
 
-```javascript
-// index.js
-
+```javascript title="src/index.js"
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -178,13 +174,12 @@ Also, we can remove `logo` files from the `public` folder, now my files are look
 
 ![img](../static/img/fs.png)
 
-### Important Note: 
+:::important
 
-Throughout this tutorial, I will create multiple components and you need to import the components to `App.js` to see how it is working. I have used `react-router-dom` to show all the components in one app, but we will not talk about routing in this tutorial. That's why you need to create a folder under `src` directory named `components` and create the components there, then import it to `App.js`. Example:
+Throughout this tutorial, we will create multiple components and you need to import the components to `App.js` to see how it is working. I have used `react-router-dom` to show all the components in one app, but we will not talk about routing in this tutorial. That's why you need to create a folder under `src` directory named `components` and create the components there, then import it to `App.js`. Example:
+:::
 
-```javascript
-// App.js
-
+```javascript title="src/App.js"
 import React from 'react';
 // import the new component here
 import StateHook from './components/StateHook';
@@ -216,7 +211,7 @@ I have used [Semantic UI](https://semantic-ui.com/) and custom CSS for styling. 
 
 For the CSS code, you can copy these styles inside `App.css` file.
 
-```css
+```css title="src/App.css"
 body {
   padding: 10px;
   font-family: sans-serif;
