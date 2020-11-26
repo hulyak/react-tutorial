@@ -32,10 +32,7 @@ We need to optimize our components. We can pass _a list of dependencies_. The de
 
 Let's see it in a simple example.
 
-```javascript
-
-//  src > components > UseEffect.js
-
+```javascript title="src/components/UseEffect.js"
 import React, { useState, useEffect } from 'react';
 
 const UseEffect = ()  => {
@@ -72,7 +69,6 @@ With our `console.log`, we can see that we rerender our component with our initi
 
 ![effect](../static/img/effect.gif)
 
-
 ## 2. useEffect with an Empty Dependency Array
 
 Now, for the second scenario, we have a car but first, we need to start the car, after that no need to update anything, just one time start the car.
@@ -92,7 +88,7 @@ It looks exactly like the behavior of `componentDidMount` in React classes. But 
 
 ## 3. useEffect with a Non-empty Dependency Array 
 
-The last analogy is the real-life scenario, we have a car and we need to buy gas, change the oil, etc. We depend on other stuff to start our car. So, we need to update/refill gas to drive the car.
+The last analogy is the real-life scenario, we have a car and we need to buy gas, change the oil, etc. We depend on other stuff to start our car. So, we need to refill gas to drive the car.
 
 ![img](../static/img/car3.gif)
 
@@ -108,10 +104,7 @@ If the variable is inside this array, we will trigger this effect only when the 
 We can put our variables inside the dependency array from our component like any variables that we want for; for example, state variables, local variables, or props.
 They adjust the array of dependencies.
 
-```javascript
-
-// src > components > UseEffect.js
-
+```javascript title="src/components/UseEffect.js"
 import React, { useState, useEffect } from 'react';
 
 const UseEffect = () => {
@@ -154,10 +147,7 @@ I think no one wants to stuck in a loop; so, we need to find a way to get out of
 The array of variables will decide if it should execute the function or not. It looks at the content of the array and compares the previous array, and if any of the value specified in the array changes compared to the previous value of the array, it will execute the effect function. If there is no change, it will not execute. 
 
 
-```javascript
-
-// src > components > UseEffect.js
-
+```javascript title="src/components/UseEffect.js"
 import React, { useState, useEffect } from 'react';
 
 const UseEffect = () =>  {
@@ -246,10 +236,7 @@ useEffect(() => {
 }, [input]);
 ```
 
-```javascript
-
-// src > components > Cleanup.js
-
+```javascript title="src/components/Cleanup.js"
 import React, { useState, useEffect } from 'react';
 
 const Cleanup = ()  => {
@@ -276,16 +263,17 @@ Our `useEffect` hook is only gonna run one time because we have our empty depend
 
 To clean up our hook, we are creating our `return` function, getting our interval id, and passing inside our `clearInterval` method.
 
-### Side Notes
+:::note
 
-- We can use multiple `useEffect's` in our application.
-- We cannot mark `useEffect` as an `async function`.
+- We can use multiple **useEffect's** in our application.
+- We cannot mark **useEffect** as an **async function**.
 - React applies effect in the order they are created.
 - We can make API calls to React in four different ways:
 
-1. Call `fetch/Axios` in your component
+1. Call **fetch/Axios** in your component
 2. Make another file and store your API calls.
 3. Create a reusable custom hook.
-4. Use a library like `react-query`, `SWR`, etc.
+4. Use a library like **react-query**, **SWR**, etc.
+::: 
 
 We will use `fetch` in our application for simplicity. Now, ready to move on with our final demo app? Time to combine everything you have learned with a real-life application. This will be fun!!! 😇

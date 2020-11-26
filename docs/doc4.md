@@ -22,9 +22,7 @@ To be able to get a response for search queries, we need an APP ID, and an APP K
 9. Still, there is a problem? You need to wait until your API keys are available. Also, for the free version, we can only make 5 requests per minute.
 10. You can check out the [documentation.](https://developer.edamam.com/edamam-docs-recipe-api)
 
-```js
-// src > components > FoodRecipe.js
-
+```js title="src/components/FoodRecipe.js"
 import React, {useEffect} from 'react';
 
 const FoodRecipe = () => {
@@ -75,9 +73,7 @@ Let's see what we did in our code:
 
 We got our API response, and we got a lot of information. You can see from the gif. Now, we need to create a state for our recipes, and we will update the recipes with the API data. We will only extract `hits` and their contents from our response. Let's do it!
 
-```javascript
-// src > components > FoodRecipe.js
-
+```javascript title="src/components/FoodRecipe.js"
 import React, {useState, useEffect} from 'react';
 // import Recipe component
 import Recipe from './Recipe';
@@ -118,9 +114,7 @@ Go to `src > components`, create a new component, and name it `Recipe.js`. Copy 
 
 Here, I have used some Semantic UI components to display our individual recipes.
 
-```javascript
-// src > components > Recipe.js
-
+```javascript title="src/components/Recipe.js"
 import React from 'react';
 
 const Recipe = () => {
@@ -150,9 +144,8 @@ export default Recipe;
 
 Now, we need to map over our recipes state, and display the results.
 
-```javascript
-// src > components > FoodRecipe.js
-
+```javascript title="src/components/FoodRecipe.js":
+// ..............
 return (
     <div>
       <h1>Food Recipe App </h1>
@@ -186,9 +179,7 @@ For now, I am getting our Recipe.js without any props, of course.
 
 Now, we can go to our `Recipe` component and pass our props to it. We are getting these props from the parent `FoodRecipe.js`. We will use destructuring.
 
-```javascript
-// src > components > Recipe.js
-
+```javascript title="src/components/Recipe.js"
 import React from 'react';
 
 // inside recipe object destructure label, etc
@@ -225,9 +216,7 @@ Now, we need to use our search bar and we will search the recipe from our input 
 
 Go to `FoodRecipe.js` and add a new `search` state.
 
-```javascript
-// src > components > FoodRecipe.js
-
+```javascript title="src/components/FoodRecipe.js"
 // create a state for search query
 const [search, setSearch] = useState('');
 ```
@@ -237,9 +226,7 @@ And set the value for input value `search` and `setSearch` will update our input
 `input` is keeping track of its state with `search` state. We can get input's value from `event.target.value`.
 Then we can change our state with `setSearch` function.
 
-```javascript
-// src > components > FoodRecipe.js
-
+```javascript title="src/components/FoodRecipe.js"
 <input
   type="text"
   value={search}
@@ -250,9 +237,7 @@ Then we can change our state with `setSearch` function.
 We need to update our state after we click on `Search Button`. That's why we need another state. And we can update our `url` from chicken query to any query. Make a new state, name it `query`.
 
 
-```javascript
-// src > components > FoodRecipe.js
-
+```javascript title="src/components/FoodRecipe.js"
 const [query, setQuery] = useState('');
 
 // when you send the form, we call onSubmit handler to query the results
@@ -268,9 +253,7 @@ Now, we need to pass our `query` state to our `onEffect` dependency array. Whene
 
 `query` will run only after the form submit. Use it as a dependency inside the array. Our final code now looks like this:
 
-```javascript
-// src > component > FoodRecipe.js
-
+```javascript title="src/component/FoodRecipe.js"
 import React, {useState, useEffect} from 'react';
 import Recipe from './Recipe';
 
