@@ -19,4 +19,4 @@ Here are the references I used for this tutorial:
 - [Tania Rascia's React Tutorial](https://www.taniarascia.com/getting-started-with-react/)
 - [Software on the Road/React Hooks: everything you need to know!](https://softwareontheroad.com/react-hooks/#use-effect)
 - [Upmostly tutorials/Simplifying React State and the useState Hook](https://upmostly.com/tutorials/simplifying-react-state-and-the-usestate-hook)
-- [React Hooks: How to Get Started & Build Your Own](https://www.sitepoint.com/react-hooks/)
+- [SitePoint/React Hooks: How to Get Started & Build Your Own](https://www.sitepoint.com/react-hooks/)

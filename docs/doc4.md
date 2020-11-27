@@ -4,23 +4,22 @@ title: Demo App-Food Recipes
 ---
 
 It's time to create our demo app!
-In this app, we will create a Food Recipe app, we will fetch data from an API and we will use both `useState` and `useEffect` hooks.
+We will create a Food Recipe app, we will fetch data from an API and we will use both `useState` and `useEffect` hooks.
 
 First, create a new file under `src > components` and name it `FoodRecipe.js`.
-To be able to get a response for search queries, we need an APP ID, and an APP KEY.
+To be able to get a response for search queries, we need an `APP ID`, and an `APP KEY`.
 
 ## How Can I Fetch Data?
 
 1. Go to [edamam.com](https://www.edamam.com/)
 2. Choose `Recipe Search API` and click on `Sign Up`
-3. Choose `Developer` and Click on `Start Now`
+3. Choose `Developer` and click on `Start Now`
 4. Fill out the form.
 5. Go to `Dashboard`
 6. Click on `Applications` > `View`. You should see your Application ID and Application Keys on this page.
 7. Copy your keys and paste them inside the code.
 8. API can give some errors, if you see any **CORS errors**, add a cors browser extension for the browser you are using. [Firefox](https://addons.mozilla.org/en-US/firefox/addon/cors-everywhere/) / [Chrome](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf/related)
-9. Still, there is a problem? You need to wait until your API keys are available. Also, for the free version, we can only make 5 requests per minute.
-10. You can check out the [documentation.](https://developer.edamam.com/edamam-docs-recipe-api)
+9. Still, there is a problem? You need to wait until your API keys are available. Also, for the free version, we can only make 5 requests per minute. You can check out the [documentation.](https://developer.edamam.com/edamam-docs-recipe-api)
 
 ```js title="src/components/FoodRecipe.js"
 import React, {useEffect} from 'react';
@@ -75,8 +74,6 @@ We got our API response, and we got a lot of information. You can see from the g
 
 ```javascript title="src/components/FoodRecipe.js"
 import React, {useState, useEffect} from 'react';
-// import Recipe component
-import Recipe from './Recipe';
 
 const FoodRecipe = () => {
   // state for our API data
@@ -110,7 +107,7 @@ Okay, here we have added our `recipes` state and updated with `setRecipes`. From
 
 We need to display our recipes, for that let's create a `Recipe` component.
 
-Go to `src > components`, create a new component, and name it `Recipe.js`. Copy this code and this code will allow us to display individual recipes.
+Go to `src > components`, create a new component, and name it `Recipe.js`. Copy this code, this will allow us to display individual recipes.
 
 Here, I have used some Semantic UI components to display our individual recipes.
 
@@ -119,23 +116,23 @@ import React from 'react';
 
 const Recipe = () => {
 	return (
-    <div class="ui column grid">
-      <div className="column recipe">
-        <div className="content">
-          <h2>Label</h2>
-          <p>Calories: </p>
-          <ul>
-            <li>Ingredients</li>
-          </ul>
-          <a href="" target="_blank">
-            URL
-          </a>
+      <div class="ui column grid">
+        <div className="column recipe">
+          <div className="content">
+            <h2>Label</h2>
+            <p>Calories: </p>
+            <ul>
+              <li>Ingredients</li>
+            </ul>
+            <a href="" target="_blank">
+              URL
+            </a>
+            </div>
+          <div className="ui fluid card">
+            <img />
           </div>
-        <div className="ui fluid card">
-          <img />
         </div>
       </div>
-    </div>
 	);
 };
 
@@ -157,23 +154,23 @@ return (
         </form>
         <div className="recipes">
           {/* map over our array and pass our data from API*/}
-        {recipes !== [] &&
-            recipes.map((recipe) => (
-            <Recipe
-              key={recipe.recipe.url}
-              label={recipe.recipe.label}
-              calories={recipe.recipe.calories}
-              image={recipe.recipe.image}
-              url={recipe.recipe.url}
-              ingredients={recipe.recipe.ingredients}
-            />
-          ))}
+          {recipes !== [] &&
+              recipes.map((recipe) => (
+              <Recipe
+                key={recipe.recipe.url}
+                label={recipe.recipe.label}
+                calories={recipe.recipe.calories}
+                image={recipe.recipe.image}
+                url={recipe.recipe.url}
+                ingredients={recipe.recipe.ingredients}
+              />
+            ))}
         </div>
       </div>
   );
 ```
 
-For now, I am getting our Recipe.js without any props, of course. 
+For now, I am getting our `Recipe.js` without any props, of course. 
 
 ![food](../static/img/food.gif)
 
@@ -185,23 +182,23 @@ import React from 'react';
 // inside recipe object destructure label, etc
 const Recipe = ({label, calories, image, url, ingredients}) => {
   return (
-    <div class="ui column grid">
-        <div className="column recipe">
-          <div className="content">
-            <h2>{label}</h2>
-            <p>{calories}</p>
-            <ul>{ingredients.map((ingredient) => 
-                <li key={ingredient.text}>{ingredient.text}</li>)}
-            </ul>
-            <a href={url} target="_blank">
-              URL
-            </a>
-          </div>
-          <div className="ui fluid card">
-            <img src={image} alt={label} />
+      <div class="ui column grid">
+          <div className="column recipe">
+            <div className="content">
+              <h2>{label}</h2>
+              <p>{calories}</p>
+              <ul>{ingredients.map((ingredient) => 
+                  <li key={ingredient.text}>{ingredient.text}</li>)}
+              </ul>
+              <a href={url} target="_blank">
+                URL
+              </a>
+            </div>
+            <div className="ui fluid card">
+              <img src={image} alt={label} />
+            </div>
           </div>
         </div>
-      </div>
   );
 };
 
@@ -221,7 +218,7 @@ Go to `FoodRecipe.js` and add a new `search` state.
 const [search, setSearch] = useState('');
 ```
 
-And set the value for input value `search` and `setSearch` will update our input with the `onChange` event handler. `
+Set the value for input value `search` and `setSearch` will update our input with the `onChange` event handler. 
 
 `input` is keeping track of its state with `search` state. We can get input's value from `event.target.value`.
 Then we can change our state with `setSearch` function.

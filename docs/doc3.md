@@ -225,7 +225,7 @@ We will not add `count` inside our dependency array because if the count changes
 
 ## `useEffect` Cleanup
 
-`useEffect` comes with a cleanup function that helps unmount the component, we can think of it is like `componentWillUnmount` lifecycle event. When we need to clear a subscription or clear setTimeout, we can use cleanup functions. When we run the code, the code first will clean up the old state, then will run the updated state. This can help us to remove unnecessary behavior or prevent memory leaking issues.
+`useEffect` comes with a cleanup function that helps unmount the component, we can think of it is like `componentWillUnmount` lifecycle event. When we need to clear a subscription or clear timeout, we can use cleanup functions. When we run the code, the code first will clean up the old state, then will run the updated state. This can help us to remove unnecessary behavior or prevent memory leaking issues.
 
 ```javascript
 useEffect(() => {
@@ -243,10 +243,12 @@ const Cleanup = ()  => {
   const [ count, setCount ] = useState(0);
 
   useEffect(() => {
-  const intervalId = setInterval(() => {
-    setCount((prevCount) => prevCount + 1);
-    }, 1000);
-  return () => clearInterval(intervalId);
+    const intervalId = setInterval(() => {
+      setCount((prevCount) => prevCount + 1);
+      }, 1000);
+
+      // cleanup function
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
@@ -260,6 +262,8 @@ export default Cleanup;
 ```
 We have defined a `setInterval` method inside our `useEffect` hook, and our interval will run in the background. We are passing a function inside `setInterval` and it will update our `count` piece of state every second.
 Our `useEffect` hook is only gonna run one time because we have our empty dependency array.
+
+![cleanup](../static/img/cleanup.gif)
 
 To clean up our hook, we are creating our `return` function, getting our interval id, and passing inside our `clearInterval` method.
 
