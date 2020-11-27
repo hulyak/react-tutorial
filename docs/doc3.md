@@ -50,11 +50,11 @@ const handleClick = () => {
   setCount(count + 1)
 }
   return (
-  <div>
-    <h1>{isOn ? "ON" : "OFF"}</h1>
-    <h1>I was clicked {count} times</h1>
-    <button onClick={handleClick} className="btn">Click me</button>
-  </div>
+    <div>
+      <h1>{isOn ? "ON" : "OFF"}</h1>
+      <h1>I was clicked {count} times</h1>
+      <button onClick={handleClick} className="btn">Click me</button>
+    </div>
   );
 }
 

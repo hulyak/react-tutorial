@@ -11,14 +11,10 @@ React is a Javascript library for building user interfaces. You may have worked 
 
 ### What we will cover 
 
-Throughout this tutorial, you’ll learn how to set state using the `useState` and `useEffect` Hooks. We’ll create different components and for the last component, we will combine these two hooks and create a recipe app that we’ll fetch new recipes from an API. More specifically, we will learn how to: 
+Throughout this tutorial, we’ll learn how to set state using the `useState` and `useEffect` Hooks. We’ll create different components and for the last component, we will combine these two hooks and create a recipe app that will fetch new recipes from an API. More specifically, we will learn how to: 
 
-- use `useState` with an array for the default value
-- use `useState` with an object for the default value
-- use `useEffect` without a Dependency Array
-- use `useEffect` with an Empty Dependency Array
-- use `useEffect` with a Non-empty Dependency Array
-- use `useEffect` with cleanup function
+- use `useState` with an array/object for the default value
+- use `useEffect` without a Dependency Array, with an Empty Dependency Array, with a Non-empty Dependency Array, and with a cleanup function
 - fetch an API with `useEffect`
 
 **By the end of the tutorial, you will have the following skill sets:**
@@ -49,23 +45,19 @@ We can organize the logic inside a component into `reusable isolated units`, and
 React Hooks makes developing apps easier with less complexity. It improves the readability and organization of components.
 We can create custom hooks to reuse code across our app.
 
-
-I want to start our tutorial with a general overview of our hooks. This will you a big picture of hooks, then we will dig deeper into our two commonly used hooks. You can just skim over these and use them as a reference when you need them. This may be overwhelming, but no need to worry right now. 
-
-## React Hooks
-
+I want to start our tutorial with a general overview of our hooks. This will you a big picture of hooks, then we will dig deeper into our two commonly used hooks. You can just skim over these and use them as a reference when you need them. This may be overwhelming, but no need to worry about it right now. 
 
 ![img](../static/img/diagram.png)
 
 - `useState` is the most common hook that you will see. It is the `state hook` for declaring the state in our components.
 - `useEffect` is used for _side effects_ like fetching data from an API.
 - `useRef` is used to allow access directly to an element in the DOM and to create a mutable ref object that won't trigger a rerender.
-- `useContext` allows us to easily work with the React Context API (solving the prop drilling issue)
+- `useContext` allows us to easily work with the React Context API (solving the prop drilling issue).
 - `useReducer` is an advanced version of `useState` for managing complex state logic. It’s quite similar to Redux.
 - `useMemo` returns a value from a memoized function.
 - `useCallback` returns a function that returns a cacheable value. Useful for performance optimization if you want to prevent unnecessary re-renders when the input hasn’t changed.
-- `useLayoutEffect` similar to `useEffect` , they differ in when they trigger.
-- `useImperativeHandle` to customize the instance value that’s exposed to parent components when using ref.
+- `useLayoutEffect` similar to `useEffect`, they differ in when they trigger.
+- `useImperativeHandle` to customize the instance value that’s exposed to parent components when using `ref`.
 - `useDebugValue` displays a label for custom Hooks in React Developer Tools.
 
 In this tutorial, we will focus on the most common hooks: `useState` and `useEffect`. But first, let's start with _why we need hooks in the first place._
@@ -74,27 +66,27 @@ In this tutorial, we will focus on the most common hooks: `useState` and `useEff
  
 Before Hooks:
 
-- We would need to understand how **this** keyword works in Javascript, and to remember to bind event handlers in `class components`.
-- A common way to attach logic externally to a component was to use the `render props` or `Higher-Order Components` pattern.
+- We would need to understand how **this** keyword works in Javascript and to remember to bind event handlers in `class components`.
+- A common way to attach logic externally to a component was to use the `render props` or `Higher Order Components` pattern.
 
-
-We needed to share stateful logic in a better way. React is designed to render components, and it doesn't know anything about routing, fetching data, or architecture of our project.
+We needed to share stateful logic in a better way. React is designed to render components, and it doesn't know anything about routing, fetching data, or the architecture of our project.
 There wasn't a particular way to reuse stateful component logic and this made the code harder to follow.
 So, React Hooks came to the rescue.
-
 
 ![img](../static/img/superman.gif)
 
 
 Hooks are just functions that are exported from the official React page. They allow us to manipulate components in a different manner.
 
+:::important
 There are some **rules** about how to use hooks. The following rules are:
 
 1. Only call hooks at the top level of the component.
-2. Don't call hooks inside loops, conditionals, or nested functions/
+2. Don't call hooks inside loops, conditionals, or nested functions.
 3. Only call hooks from React functional components.
-4. Call them from within React functional components and not just any regular Javascript function
-5. Hooks can call other Hooks
+4. Call them from within React functional components and not just any regular Javascript function.
+5. Hooks can call other Hooks.
+:::
 
 You may ask, _Should I need to change my class components to hooks?_ Actually NO, we can still use class components as 16.8 is backward compatible.
 
@@ -118,7 +110,7 @@ You need to either upgrade the version of React and React-DOM to `16.8.2` or cre
 
 In this tutorial, we’ll use Create React App to create a new React project.
 
-Open your terminal and run the following to create the new project:
+Open up your terminal and run the following to create the new project:
 
 ```bash
 # cd into the directory you want to create the project.
@@ -209,7 +201,7 @@ I have used [Semantic UI](https://semantic-ui.com/) and custom CSS for styling. 
 
 `className` attribute values are coming from Semantic UI or CSS. You don't need to focus on those.
 
-For the CSS code, you can copy these styles inside `App.css` file.
+For the CSS code, you can copy-paste these inside `App.css` file.
 
 ```css title="src/App.css"
 body {

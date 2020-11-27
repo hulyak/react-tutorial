@@ -5,7 +5,7 @@ title: The useState Hook
 
 State helps build highly performant web apps. To keep track of our application logic, we need to use `useState`. We can reflect any UI(user interface) changes via changes in state.
 
-`useState` function lets you use state in a functional component.
+`useState` function lets us use state in a functional component.
 
 In order to use `useState` in our component, we have to import `useState` first. `useState` is a named export; so, we will export it with curly braces.
 
@@ -135,7 +135,7 @@ Let's add this one line of code to see what is happening.
 
 When we type for the first name input, the last name input is disappearing. **Because state doesn't automatically merge and update the state.** `useState` does not "merge" its arguments with the old state. They just set the state. Every time, with every rerender we don't mutate our state, we get a completely new state, we can change our state with the setter function.
 
-In class components `setState` will merge the state, `useState` hook will not merge the state. To handle this, we will use `spread operator` to merge. With this, the setter object will copy every in the `name` object, and overwrite the `firstName` or `lastName` fields with a different value.
+In class components `setState` will merge the state; `useState` hook will not merge the state. To handle this, we will use the `spread operator` to merge. With this, the setter object will copy everything inside the `name` object, and overwrite the `firstName` or `lastName` fields with a different value.
 
 Let's see this in our code:
 
@@ -146,13 +146,13 @@ return (
       <input
         type="text"
         value={name.firstName}
-        // add spread operator
+        // add the spread operator
         onChange={(e) => setName({...name, firstName: e.target.value})}
       />
       <input
         type="text"
         value={name.lastName}
-        // add spread operator
+        // add the spread operator
         onChange={(e) => setName({...name, lastName: e.target.value})}
       />
       <h2>First name is: {name.firstName}</h2>
@@ -164,10 +164,10 @@ return (
 
 ![demo](../static/img/demo5.gif)
 
-Some Key Points:
-
+:::important
 - We `shouldn't mutate the state` in our components.
-- We need to pass the previous state by the state setter(with the spread operator)
+- We need to pass the previous state by the state setter(with the spread operator).
+:::
 
 ## useState with arrays
 
@@ -240,9 +240,8 @@ Let’s break down the code above to explain what we’ve added and how it works
 - importing the `useState` hook from React
 - creating a new constant that returns `items` and `setItems` from `useState`.
 - initializing the `useState` hook with an array of objects.
-- returning some JSX elements and Semantic UI to add a grid system
-- mapping over the array to get each array item
-- returning JSX elements to display our array items
+- returning some JSX elements to display our array items and Semantic UI to add a grid system
+- mapping over the array to get each array item 
 - adding a remove button for every item when it is clicked, we can remove the individual item 
 - adding a button with an `onClick` handler that invokes the `setItems` function of `useState` with an empty array. So, we can remove everything from our array.
 - adding an add button, when it is clicked on it adds a new item. We merge the old state with the updated state with the help of ES6 spread operator.
