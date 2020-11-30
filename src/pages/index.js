@@ -15,7 +15,7 @@ const features = [
         Throughout this tutorial, you will learn how to set state using <code>useState</code> and <code>useEffect</code> Hooks. We will create different components and for the last component, we will combine these two hooks and create a recipe app that will fetch new recipes from an API.
 				<h4>
 					You can view the finished{' '}
-          <span><a href="'https://react-tut-beginner.netlify.app/" target="_blank">
+          <span><a href="https://react-tut-beginner.netlify.app/" target="_blank">
             application.
 					</a></span>
 				</h4>

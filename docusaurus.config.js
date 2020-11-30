@@ -27,7 +27,7 @@ module.exports = {
 					position: 'left'
 				},
 				{
-					href: 'https://github.com/hulyak/react-tutorial-beginner',
+					href: 'https://github.com/hulyak/react-tutorial',
 					label: 'GitHub',
 					position: 'right',
 				},
