@@ -7,7 +7,7 @@ Now, go build something amazing, but don't pressure yourself. You can always go 
 
 If you run into any issues with your app or you have questions, please reach out to me on [Twitter](https://twitter.com/hulyakarakayaa) or [Github](https://github.com/hulyak).
 
-## Credits:
+### Credits:
 
 [Giphy](https://giphy.com/)
 
