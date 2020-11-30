@@ -66,9 +66,9 @@ export default FoodRecipe;
 
 Let's see what we did in our code:
 
-- Created some JSX and added form, input, and button properties.
-- As you can see, we are calling our function to fetch our data.
-- Created a `fetch` request to get our data, and used `useEffect` hook to call our function. As you can see, we are using our empty dependency array, because we will only make a request when our app loads. 
+- Created some JSX elements(form, input, and button properties).
+- We are calling our function to fetch our data.
+- Created a `fetch` request to get our data, and used `useEffect` hook to call our function. We are using our empty dependency array, because we will only make a request when our app loads. 
 
 We got our API response, and we got a lot of information. You can see from the gif. Now, we need to create a state for our recipes, and we will update the recipes with the API data. We will only extract `hits` and their contents from our response. Let's do it!
 
@@ -92,7 +92,7 @@ const FoodRecipe = () => {
     const response = await fetch(url);
     const result = await response.json();
     console.log(result);
-    // set the state for our results and extract the 'hits' data
+    // set the state for our results and extract the 'hits' data from API response
     setRecipes(result.hits);
   };
 
@@ -107,7 +107,7 @@ Okay, here we have added our `recipes` state and updated with `setRecipes`. From
 
 We need to display our recipes, for that let's create a `Recipe` component.
 
-Go to `src > components`, create a new component, and name it `Recipe.js`. Copy this code, this will allow us to display individual recipes.
+Go to `src > components`, create a new component and name it `Recipe.js`. Copy this code, this will allow us to display individual recipes.
 
 Here, I have used some Semantic UI components to display our individual recipes.
 
@@ -174,12 +174,12 @@ For now, I am getting our `Recipe.js` without any props, of course.
 
 ![food](../static/img/food.gif)
 
-Now, we can go to our `Recipe` component and pass our props to it. We are getting these props from the parent `FoodRecipe.js`. We will use destructuring.
+Now, we can go to our `Recipe` component and pass our props to it. We are getting these props from the parent `FoodRecipe.js`. We will use destructuring to get our props.
 
 ```javascript title="src/components/Recipe.js"
 import React from 'react';
 
-// inside recipe object destructure label, etc
+// destructure label, calories etc
 const Recipe = ({label, calories, image, url, ingredients}) => {
   return (
       <div class="ui column grid">
@@ -209,7 +209,7 @@ export default Recipe;
 
 Tadaa!! We got our chickens! 
 
-Now, we need to use our search bar and we will search the recipe from our input field. To get the state of our search bar, we will create a new piece of state.
+Now, we need to use our search bar, we will search the recipe from our input field. To get the state of our search bar, we will create a new piece of state.
 
 Go to `FoodRecipe.js` and add a new `search` state.
 
@@ -218,9 +218,9 @@ Go to `FoodRecipe.js` and add a new `search` state.
 const [search, setSearch] = useState('');
 ```
 
-Set the value for input value `search` and `setSearch` will update our input with the `onChange` event handler. 
+Set the value for input value `search`, `setSearch` will update our input with the `onChange` event handler. 
 
-`input` is keeping track of its state with `search` state. We can get input's value from `event.target.value`.
+The `input` is keeping track of its state with the `search` state. We can get input's value from `event.target.value`.
 Then we can change our state with `setSearch` function.
 
 ```javascript title="src/components/FoodRecipe.js"
@@ -248,7 +248,7 @@ const onSubmit = (e) => {
 
 Now, we need to pass our `query` state to our `onEffect` dependency array. Whenever we click on the Search button, we will call our API and change our state to a new `query` state.
 
-`query` will run only after the form submit. Use it as a dependency inside the array. Our final code now looks like this:
+The `query` will only run after the form submit. Use it as a dependency inside the array. Our final code now looks like this:
 
 ```javascript title="src/component/FoodRecipe.js"
 import React, {useState, useEffect} from 'react';
