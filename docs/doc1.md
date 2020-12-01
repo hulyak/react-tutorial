@@ -31,12 +31,10 @@ Here are the source and a live demo of the end result.
 #### Prerequisites
 
 - Basic familiarity with HTML & CSS.
-- Basic knowledge of JavaScript and programming.
+- Basic knowledge of JavaScript ES6.
 - Basic understanding of the DOM.
-- Familiarity with ECMAScript 2015 (arrow functions, destructuring, classes)
 - Basic React knowledge like props, components, one way-data-flow
-
-
+  
 ## What Are React Hooks?
 
 Hooks are a new addition in React 16.8. With the help of hooks, we can use state and other React features without writing a class.
