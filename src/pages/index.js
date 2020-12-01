@@ -12,7 +12,7 @@ const features = [
 		imageUrl: 'img/problems2.svg',
 		description: (
 			<p>
-        Throughout this tutorial, you will learn how to set state using <code>useState</code> and <code>useEffect</code> Hooks. We will create different components and for the last component, we will combine these two hooks and create a recipe app that will fetch new recipes from an API.
+        Learn how to set state using <code>useState</code> and <code>useEffect</code> Hooks. Create different components and create a recipe app that will fetch new recipes from an API.
 				<h4>
 					You can view the finished{' '}
           <span><a href="https://react-tut-beginner.netlify.app/" target="_blank">
@@ -27,8 +27,7 @@ const features = [
 		imageUrl: 'img/focus.svg',
 		description: (
 			<p>
-			By the end of the tutorial, you will have the hands-on practical and real-life scenario of basic React Application using React Hooks.
-      You will manage state in a functional component using Hooks, and you’ll have a foundation for more advanced Hooks such as <code>useCallback</code>, <code>useMemo</code>, and <code>useContext</code>.
+			You will have the hands-on practical and real-life scenario of basic React Application using React Hooks.
 			</p>
 		),
 	},
