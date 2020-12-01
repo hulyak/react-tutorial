@@ -67,7 +67,7 @@ In this tutorial, we will focus on the most common hooks: `useState` and `useEff
 Before Hooks:
 
 - We would need to understand how **this** keyword works in Javascript and to remember to bind event handlers in `class components`.
-- A common way to attach logic externally to a component was to use the `render props` or `Higher Order Components` pattern.
+- A common way to attach logic externally to a component was to use the `render props` or `Higher-Order Components` pattern.
 
 We needed to share stateful logic in a better way. React is designed to render components, and it doesn't know anything about routing, fetching data, or the architecture of our project.
 There wasn't a particular way to reuse stateful component logic and this made the code harder to follow.

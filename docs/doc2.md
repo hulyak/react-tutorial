@@ -44,7 +44,7 @@ export default StateHook;
 `useState` returns an array of two items:
 
 - the first element is the _current value of the state_.
-- the second is a _state setter/updater function_, we use to update our state.
+- the second is a _state setter/updater function_, which we use to update our state.
 
 In short, state tracks the value of our state. The setter function updates the state and rerenders JSX elements.
 
@@ -62,7 +62,7 @@ const title = items[0];
 const setTitle = items[1];
 ```
 
-You may ask, _How React knows when to render?_ React components will only rerender when its props or state have changed. Props are passed into a component and read-only, whereas a state holds information about the component, and can be updated. During the initial render, the returned state is the same as the value passed as the first argument (initialState).
+You may ask, _How React knows when to render?_ React components will only rerender when their props or state have changed. Props are passed into a component and read-only, whereas a state holds information about the component, and can be updated. During the initial render, the returned state is the same as the value passed as the first argument (initialState).
 
 So, here we updated our state with the `setTitle` setter function and passed a different string inside of it. When the button gets clicked, we are updating the state with the `onClick event handler`. The `setTitle` function accepts a new state value and rerenders the component. 
 

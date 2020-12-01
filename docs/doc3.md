@@ -217,7 +217,7 @@ export default UseEffect;
 
 ![dep2](../static/img/dep2.gif)
 
-Okay, now it stars from 0. If you're checking the console, you may see a warning: 
+Okay, now it starts from 0. If you're checking the console, you may see a warning: 
 
 ![warning](../static/img/warning.png)
 

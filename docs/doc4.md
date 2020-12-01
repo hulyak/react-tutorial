@@ -7,7 +7,7 @@ It's time to create our demo app!
 We will create a Food Recipe app, we will fetch data from an API and we will use both `useState` and `useEffect` hooks.
 
 First, create a new file under `src > components` and name it `FoodRecipe.js`.
-To be able to get a response for search queries, we need an `APP ID`, and an `APP KEY`.
+To be able to get a response for search queries, we need an `APP ID` and an `APP KEY`.
 
 ## How Can I Fetch Data?
 
@@ -68,7 +68,7 @@ Let's see what we did in our code:
 
 - Created some JSX elements(form, input, and button properties).
 - We are calling our function to fetch our data.
-- Created a `fetch` request to get our data, and used `useEffect` hook to call our function. We are using our empty dependency array, because we will only make a request when our app loads. 
+- Created a `fetch` request to get our data, and used `useEffect` hook to call our function. We are using our empty dependency array because we will only make a request when our app loads. 
 
 We got our API response, and we got a lot of information. You can see from the gif. Now, we need to create a state for our recipes, and we will update the recipes with the API data. We will only extract `hits` and their contents from our response. Let's do it!
 
@@ -107,7 +107,7 @@ Okay, here we have added our `recipes` state and updated with `setRecipes`. From
 
 We need to display our recipes, for that let's create a `Recipe` component.
 
-Go to `src > components`, create a new component and name it `Recipe.js`. Copy this code, this will allow us to display individual recipes.
+Go to `src > components`, create a new component, and name it `Recipe.js`. Copy this code, this will allow us to display individual recipes.
 
 Here, I have used some Semantic UI components to display our individual recipes.
 

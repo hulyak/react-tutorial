@@ -37,7 +37,7 @@ const features = [
 		imageUrl: 'img/undraw_docusaurus_react.svg',
 		description: (
 			<>
-      To follow along with the tutorial, you need a basic familiarity with HTML&CSS, basic knowledge of JavaScript ES6, and some basic React knowledge like props, components, one way-data-flow.
+      To follow along with the tutorial, you need basic familiarity with HTML&CSS, basic knowledge of JavaScript ES6, and some basic React knowledge like props, components, one way-data-flow.
 			</>
 		),
 	},
